@@ -1,0 +1,283 @@
+/* ==========================================================================
+   FEATURE: LANDING — HERO (bagian dari CSS kritis)
+   - Teks statis → LCP cepat tanpa menunggu JS.
+   - Kartu kaca melayang: hanya transform/opacity (GPU). Paralaks memakai
+     properti `translate` sehingga tidak bentrok dengan animasi `transform`.
+   - Animasi dijeda saat hero di luar layar / tab tersembunyi.
+   ========================================================================== */
+.hero {
+  position: relative;
+  display: grid;
+  align-items: center;
+  min-height: calc(100vh - var(--nav-height));
+  min-height: calc(100dvh - var(--nav-height));
+  padding-block: var(--space-6) var(--space-8);
+  overflow: clip;
+}
+
+.hero__inner {
+  display: grid;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+.hero__copy {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: start;
+}
+
+.hero__title em {
+  font-style: italic;
+  color: var(--color-primary-text);
+}
+
+.hero__lead {
+  font-size: var(--fs-lg);
+  color: var(--color-text-muted);
+  max-width: 36rem;
+}
+
+.hero__actions {
+  --cluster-gap: var(--space-1-5);
+}
+
+.hero__trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}
+
+.hero__trust li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-0-5);
+}
+
+.hero__trust .icon {
+  color: var(--color-success);
+}
+
+/* ---- Jam bursa (island adaptif) ---- */
+.market-clock {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 2rem;
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}
+
+.market-clock__dot {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+  background: var(--color-text-muted);
+  flex: none;
+}
+
+/* Status juga ditulis sebagai teks → tidak bergantung warna */
+.market-clock[data-state="open"] .market-clock__dot {
+  background: var(--color-success);
+  box-shadow: 0 0 0 4px var(--color-success-subtle);
+}
+
+.market-clock[data-state="pre"] .market-clock__dot,
+.market-clock[data-state="break"] .market-clock__dot {
+  background: var(--color-warning);
+}
+
+/* ---- Visual: tumpukan kartu kaca ---- */
+.hero__visual {
+  --px: 0;
+  --py: 0;
+
+  position: relative;
+  height: 32rem; /* dimensi eksplisit → CLS 0 */
+  isolation: isolate;
+}
+
+/* Orb latar untuk dibiaskan kaca */
+.hero__visual::before,
+.hero__visual::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  filter: blur(8px);
+}
+
+.hero__visual::before {
+  inset-block-start: 8%;
+  inset-inline-end: 6%;
+  width: 14rem;
+  height: 14rem;
+  background: radial-gradient(circle at 30% 30%, var(--orb-a-start), var(--orb-a-end));
+  opacity: 0.55;
+}
+
+.hero__visual::after {
+  inset-block-end: 4%;
+  inset-inline-start: 4%;
+  width: 10rem;
+  height: 10rem;
+  background: radial-gradient(circle at 30% 30%, var(--orb-b-start), var(--orb-b-end));
+  opacity: 0.6;
+}
+
+.hero-card {
+  position: absolute;
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-2);
+  border-radius: var(--radius-lg);
+  font-size: var(--fs-sm);
+  translate: calc(var(--px) * var(--depth, 10px)) calc(var(--py) * var(--depth, 10px));
+  will-change: transform;
+  animation: hero-float 7s var(--ease-standard) infinite alternate;
+}
+
+.hero-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-1);
+}
+
+.hero-card__title {
+  font-weight: var(--weight-semibold);
+  color: var(--color-text);
+}
+
+.hero-card__value {
+  font-size: var(--fs-2xl);
+  font-weight: var(--weight-bold);
+  line-height: 1.1;
+  color: var(--color-text);
+}
+
+.hero-card__meta {
+  color: var(--color-text-muted);
+  font-size: var(--fs-xs);
+}
+
+.hero-card--main {
+  --depth: 14px;
+  inset-block-start: 3rem;
+  inset-inline: 0 6%;
+  animation-duration: 8s;
+}
+
+.hero-card--regime {
+  --depth: 26px;
+  inset-block-end: 4%;
+  inset-inline-end: 0;
+  width: min(16rem, 72%);
+  animation-delay: -2s;
+}
+
+.hero-card--chip {
+  --depth: 36px;
+  inset-block-start: 0;
+  inset-inline-end: 2%;
+  padding: var(--space-1) var(--space-1-5);
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  animation-delay: -4s;
+}
+
+.hero-spark {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 280 / 96;
+}
+
+.hero-spark__line { stroke: var(--color-chart-line); stroke-width: 2.5; fill: none; }
+.hero-spark__threshold { stroke: var(--color-chart-threshold); stroke-width: 2; stroke-dasharray: 5 5; fill: none; }
+.hero-spark__band { fill: var(--color-chart-band); }
+.hero-spark__dot { fill: var(--color-chart-line); }
+
+.regime-meter {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-0-5);
+}
+
+.regime-meter span {
+  height: 0.5rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-sunken);
+}
+
+.regime-meter span:nth-child(-n + 2) {
+  background: var(--color-accent);
+}
+
+@keyframes hero-float {
+  from { transform: translateY(0); }
+  to { transform: translateY(-10px); }
+}
+
+/* Jeda saat tidak terlihat (hemat baterai) */
+.hero[data-offscreen] .hero-card,
+:root[data-perf="low"] .hero-card {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-card {
+    animation: none;
+    translate: none;
+  }
+}
+
+/* ---- Responsif ---- */
+@media (min-width: 30em) {
+  .hero-card--main {
+    inset-inline: 4% 18%;
+  }
+}
+
+@media (min-width: 64em) {
+  .hero__inner {
+    grid-template-columns: 1.1fr 1fr;
+    gap: var(--space-8);
+  }
+
+  .hero__visual {
+    height: 30rem;
+  }
+}
+
+/* Lanskap pendek (ponsel menyamping): dua kolom ringkas */
+@media (orientation: landscape) and (max-height: 32em) {
+  .hero {
+    min-height: auto;
+    padding-block: var(--space-4);
+  }
+
+  .hero__inner {
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--space-4);
+  }
+
+  .hero__title {
+    font-size: var(--fs-3xl);
+  }
+
+  .hero__visual {
+    height: 18rem;
+  }
+}
+
+/* Perangkat lipat: tiap segmen layar memegang satu kolom */
+@media (horizontal-viewport-segments: 2) {
+  .hero__inner {
+    grid-template-columns: env(viewport-segment-width 0 0, 1fr) env(viewport-segment-width 1 0, 1fr);
+    column-gap: calc(env(viewport-segment-left 1 0, 0px) - env(viewport-segment-right 0 0, 0px));
+  }
+}

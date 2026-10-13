@@ -1,0 +1,214 @@
+/* ==========================================================================
+   ORGANISMS — footer, cookie consent, accordion (FAQ), CTA mengambang mobile
+   ========================================================================== */
+
+/* ---- Footer ---- */
+.site-footer {
+  padding-block: var(--space-8) calc(var(--space-4) + env(safe-area-inset-bottom));
+  border-block-start: var(--border-1) solid var(--color-border);
+  background: var(--color-bg-subtle);
+  font-size: var(--fs-sm);
+}
+
+.site-footer__grid {
+  display: grid;
+  gap: var(--space-4);
+}
+
+@media (min-width: 48em) {
+  .site-footer__grid {
+    grid-template-columns: 2fr repeat(3, 1fr);
+  }
+}
+
+.site-footer__title {
+  font-size: var(--fs-sm);
+  font-family: var(--font-body);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-block-end: var(--space-1);
+}
+
+.site-footer__links {
+  display: grid;
+}
+
+.site-footer__links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--size-target);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .site-footer__links a:hover {
+    color: var(--color-primary-text);
+    text-decoration: underline;
+  }
+}
+
+.site-footer__legal {
+  display: grid;
+  gap: var(--space-1);
+  margin-block-start: var(--space-6);
+  padding-block-start: var(--space-3);
+  border-block-start: var(--border-1) solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+/* ---- Cookie consent (non-modal, dalam jangkauan ibu jari) ---- */
+.consent {
+  position: fixed;
+  z-index: var(--z-overlay);
+  inset-inline: var(--space-1);
+  inset-block-end: calc(env(safe-area-inset-bottom) + var(--space-1));
+  display: grid;
+  gap: var(--space-2);
+  max-width: 40rem;
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  animation: toast-in var(--dur-slow) var(--ease-emphasized);
+}
+
+@media (min-width: 48em) {
+  .consent {
+    inset-inline: var(--space-3) auto;
+    inset-block-end: var(--space-3);
+  }
+}
+
+.consent__title {
+  font-size: var(--fs-lg);
+}
+
+.consent__text {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}
+
+/* Tolak & terima sama menonjol: grid dua kolom, varian identik */
+.consent__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-1);
+}
+
+.consent__more {
+  grid-column: 1 / -1;
+  justify-self: center;
+}
+
+/* ---- Accordion (FAQ) ---- */
+.accordion {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.accordion__item {
+  border: var(--border-1) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  transition: box-shadow var(--dur-base) var(--ease-standard);
+}
+
+.accordion__item:has(.accordion__trigger[aria-expanded="true"]) {
+  box-shadow: var(--elevation-2);
+  border-color: var(--color-border-strong);
+}
+
+.accordion__heading {
+  font-size: var(--fs-md);
+  font-family: var(--font-heading);
+}
+
+.accordion__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  width: 100%;
+  min-height: var(--size-target-lg);
+  padding: var(--space-1-5) var(--space-3);
+  text-align: start;
+  font-weight: var(--weight-semibold);
+  border-radius: var(--radius-md);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .accordion__trigger:hover {
+    color: var(--color-primary-text);
+  }
+}
+
+.accordion__chevron {
+  flex: none;
+  transition: transform var(--dur-base) var(--ease-emphasized);
+}
+
+.accordion__trigger[aria-expanded="true"] .accordion__chevron {
+  transform: rotate(180deg);
+}
+
+/* Panel memakai hidden="until-found": padding ditaruh di elemen dalam
+   agar kotak kosong tidak tampil saat tertutup (Ctrl+F tetap menemukan). */
+.accordion__content {
+  padding: 0 var(--space-3) var(--space-3);
+  color: var(--color-text-muted);
+}
+
+/* Tanpa JS: semua jawaban terbaca */
+:root:not(.js) .accordion__panel[hidden] {
+  display: block;
+  content-visibility: visible;
+}
+
+:root:not(.js) .accordion__chevron {
+  display: none;
+}
+
+/* ---- CTA mengambang (ponsel): aksi utama di zona ibu jari ---- */
+.mobile-cta {
+  position: fixed;
+  z-index: var(--z-sticky);
+  inset-inline: var(--space-2);
+  inset-block-end: calc(env(safe-area-inset-bottom) + var(--space-2));
+  display: flex;
+  gap: var(--space-1);
+  padding: var(--space-1);
+  border-radius: var(--radius-pill);
+  transform: translateY(calc(100% + 2rem));
+  transition: transform var(--dur-slow) var(--ease-emphasized);
+}
+
+.mobile-cta[data-visible] {
+  transform: translateY(0);
+}
+
+.mobile-cta .btn {
+  flex: 1;
+}
+
+@media (min-width: 48em) {
+  .mobile-cta {
+    display: none;
+  }
+}
+
+/* Jangan bertumpuk dengan banner cookie */
+body:has(.consent:not([hidden])) .mobile-cta {
+  display: none;
+}
+
+/* Toast tidak tertutup CTA mengambang / navigasi bawah aplikasi */
+body:has(.mobile-cta[data-visible]) .toast-region {
+  --toast-offset: 4.5rem;
+}
+
+@media (max-width: 63.99em) {
+  body:has(.app-nav) .toast-region {
+    --toast-offset: 4.5rem;
+  }
+}

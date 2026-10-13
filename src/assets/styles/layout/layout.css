@@ -1,0 +1,86 @@
+/* ==========================================================================
+   LAYOUT PRIMITIVES — mobile-first
+   Breakpoint berbasis konten (em → aman terhadap zoom teks):
+   30em ≈ 480px · 48em ≈ 768px · 64em ≈ 1024px · 80em ≈ 1280px
+   ========================================================================== */
+
+/* Pembungkus: membatasi lebar agar panjang baris nyaman dibaca */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--space-gutter);
+}
+
+.container--narrow {
+  max-width: var(--container-narrow);
+}
+
+.section {
+  padding-block: var(--space-section);
+}
+
+.section__header {
+  display: grid;
+  gap: var(--space-2);
+  margin-block-end: var(--space-6);
+  max-width: 44rem;
+}
+
+.section__header--center {
+  margin-inline: auto;
+  text-align: center;
+  justify-items: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.lead {
+  font-size: var(--fs-lg);
+  color: var(--color-text-muted);
+  line-height: var(--leading-relaxed);
+}
+
+/* Stack: ritme vertikal konsisten */
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--stack-gap, var(--space-stack));
+}
+
+/* Cluster: penataan satu dimensi (flexbox) untuk kelompok tombol/tautan */
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--cluster-gap, var(--space-1-5));
+}
+
+/* Grid otomatis: kolom bertambah sesuai ruang, tanpa media query */
+.auto-grid {
+  display: grid;
+  gap: var(--auto-grid-gap, var(--space-3));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--auto-grid-min, 16rem)), 1fr));
+}
+
+/* Main menyisakan ruang untuk CTA mengambang di ponsel */
+.site-main {
+  display: block;
+}
+
+/* Layar lipat dengan dua segmen horizontal: hindari konten di engsel */
+@media (horizontal-viewport-segments: 2) {
+  .container {
+    max-width: none;
+  }
+}

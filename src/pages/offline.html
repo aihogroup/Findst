@@ -1,0 +1,26 @@
+<!--@page
+{
+  "title": "Sedang Offline — Findst",
+  "description": "Perangkat sedang tidak terhubung ke internet.",
+  "path": "/offline.html",
+  "noindex": true,
+  "sitemap": false
+}
+-->
+{{> head}}
+<body>
+{{> header}}
+<main id="konten" tabindex="-1">
+  <div class="container container--narrow prose u-text-center">
+    <svg class="icon icon--xl u-mx-auto u-text-accent" aria-hidden="true"><use href="#i-wifi-off"/></svg>
+    <h1>Anda sedang offline</h1>
+    <p class="u-mx-auto">Halaman ini belum tersimpan di perangkat. Halaman publik yang pernah Anda buka tetap bisa dibaca tanpa koneksi.</p>
+    <div class="cluster u-justify-center">
+      <a class="btn btn--primary" href="/">Buka beranda tersimpan</a>
+      <a class="btn btn--secondary" href="" data-action="reload">
+        <svg class="icon" aria-hidden="true"><use href="#i-refresh"/></svg>Coba lagi
+      </a>
+    </div>
+  </div>
+</main>
+{{> footer}}

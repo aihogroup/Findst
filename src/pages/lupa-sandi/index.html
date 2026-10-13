@@ -1,0 +1,57 @@
+<!--@page
+{
+  "title": "Lupa Kata Sandi — Findst",
+  "description": "Atur ulang kata sandi akun Findst Anda dengan kode verifikasi yang dikirim ke email.",
+  "path": "/lupa-sandi/",
+  "pageCss": "auth",
+  "sitemap": { "priority": "0.3", "changefreq": "yearly" }
+}
+-->
+{{> head}}
+<body>
+{{> header}}
+<main id="konten" class="auth" tabindex="-1">
+  <div class="container auth__layout">
+    {{> auth-aside}}
+    <section class="card auth__card" aria-labelledby="forgot-title" data-island="auth" data-hydrate="load" data-auth-flow="forgot">
+      <ol class="progress-steps" aria-label="Langkah atur ulang kata sandi">
+        <li aria-current="step" data-progress="request">1. Email</li>
+        <li data-progress="reset">2. Kata sandi baru</li>
+      </ol>
+
+      <div class="stack u-gap-1">
+        <h1 class="auth__title" id="forgot-title" data-step-title tabindex="-1">Lupa kata sandi</h1>
+        <p class="u-text-muted" data-step-desc>Masukkan email akun Anda. Jika terdaftar, kami akan mengirim kode untuk mengatur ulang kata sandi.</p>
+      </div>
+
+      <noscript><p class="form-alert form-alert--info">Aktifkan JavaScript untuk mengatur ulang kata sandi.</p></noscript>
+      <div class="form-alert" role="alert" data-form-alert hidden></div>
+
+      <form class="auth__form" data-step="request" novalidate>
+        {{> field id="fg-email" name="email" type="email" label="Email" autocomplete="email" inputmode="email" enterkeyhint="send" maxlength="120"}}
+        <button class="btn btn--primary btn--lg btn--block" type="submit" data-submit>
+          <span class="spinner btn__spinner" aria-hidden="true"></span>
+          <span>Kirim kode</span>
+        </button>
+      </form>
+
+      <form class="auth__form" data-step="reset" novalidate hidden>
+        <input type="hidden" name="email" value="">
+        {{> field id="fg-otp" name="otp" type="text" label="Kode verifikasi" autocomplete="one-time-code" inputmode="numeric" maxlength="6" inputClass="input--otp" hint="6 digit kode dari email. Berlaku 10 menit."}}
+        {{> field id="fg-password" name="password" type="password" label="Kata sandi baru" autocomplete="new-password" reveal="1" meter="1" hint="Minimal 8 karakter dengan huruf dan angka." maxlength="128"}}
+        {{> field id="fg-confirm" name="confirmPassword" type="password" label="Ulangi kata sandi baru" autocomplete="new-password" reveal="1" maxlength="128"}}
+        <div class="otp-resend">
+          <span data-otp-countdown></span>
+          <button class="btn btn--ghost btn--sm" type="button" data-action="resend-otp" disabled>Kirim ulang kode</button>
+        </div>
+        <button class="btn btn--primary btn--lg btn--block" type="submit" data-submit>
+          <span class="spinner btn__spinner" aria-hidden="true"></span>
+          <span>Simpan kata sandi baru</span>
+        </button>
+      </form>
+
+      <p class="auth__switch">Ingat kata sandi? <a href="/masuk/">Kembali masuk</a></p>
+    </section>
+  </div>
+</main>
+{{> footer}}

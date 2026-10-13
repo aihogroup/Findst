@@ -1,0 +1,70 @@
+<!--@page
+{
+  "title": "Daftar Gratis — Findst",
+  "description": "Buat akun Findst gratis untuk mencoba manajemen investasi saham Indonesia dengan machine learning dan dynamic threshold.",
+  "path": "/daftar/",
+  "pageCss": "auth",
+  "sitemap": { "priority": "0.8", "changefreq": "monthly" }
+}
+-->
+{{> head}}
+<body>
+{{> header}}
+<main id="konten" class="auth" tabindex="-1">
+  <div class="container auth__layout">
+    {{> auth-aside}}
+    <section class="card auth__card" aria-labelledby="register-title" data-island="auth" data-hydrate="load" data-auth-flow="register">
+      <ol class="progress-steps" aria-label="Langkah pendaftaran">
+        <li aria-current="step" data-progress="account">1. Data akun</li>
+        <li data-progress="verify">2. Verifikasi email</li>
+      </ol>
+
+      <div class="stack u-gap-1">
+        <h1 class="auth__title" id="register-title" data-step-title tabindex="-1">Buat akun gratis</h1>
+        <p class="u-text-muted" data-step-desc>Isi data berikut. Kami akan mengirim kode verifikasi ke email Anda.</p>
+      </div>
+
+      <noscript><p class="form-alert form-alert--info">Aktifkan JavaScript untuk mendaftar.</p></noscript>
+      <div class="form-alert" role="alert" data-form-alert hidden></div>
+
+      <!-- Langkah 1: data akun -->
+      <form class="auth__form" data-step="account" novalidate>
+        <input type="hidden" name="plan" value="free">
+        {{> field id="reg-name" name="name" type="text" label="Nama lengkap" autocomplete="name" autocapitalize="words" enterkeyhint="next" maxlength="80"}}
+        {{> field id="reg-email" name="email" type="email" label="Email" autocomplete="email" inputmode="email" enterkeyhint="next" maxlength="120"}}
+        {{> field id="reg-phone" name="phone" type="tel" label="Nomor ponsel" autocomplete="tel" inputmode="tel" enterkeyhint="next" optional="1" hint="Format Indonesia, contoh 0812xxxxxxx" maxlength="16"}}
+        {{> field id="reg-password" name="password" type="password" label="Kata sandi" autocomplete="new-password" enterkeyhint="next" reveal="1" meter="1" hint="Minimal 8 karakter dengan huruf dan angka." maxlength="128"}}
+        {{> field id="reg-confirm" name="confirmPassword" type="password" label="Ulangi kata sandi" autocomplete="new-password" enterkeyhint="done" reveal="1" maxlength="128"}}
+        <div class="field" data-field="terms">
+          <label class="checkbox-row">
+            <input class="checkbox" type="checkbox" name="terms" value="1" id="reg-terms" required aria-describedby="reg-terms-error">
+            <span>Saya menyetujui <a href="/syarat-ketentuan/">Syarat &amp; Ketentuan</a> dan <a href="/kebijakan-privasi/">Kebijakan Privasi</a>, serta memahami bahwa investasi saham mengandung risiko.</span>
+          </label>
+          <p class="field__error" id="reg-terms-error" data-error-for="terms" hidden><svg class="icon icon--sm" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p>
+        </div>
+        <button class="btn btn--primary btn--lg btn--block" type="submit" data-submit>
+          <span class="spinner btn__spinner" aria-hidden="true"></span>
+          <span>Buat akun</span>
+        </button>
+      </form>
+
+      <!-- Langkah 2: verifikasi OTP -->
+      <form class="auth__form" data-step="verify" novalidate hidden>
+        <input type="hidden" name="email" value="">
+        {{> field id="reg-otp" name="otp" type="text" label="Kode verifikasi" autocomplete="one-time-code" inputmode="numeric" enterkeyhint="done" maxlength="6" inputClass="input--otp" hint="Masukkan 6 digit kode dari email. Berlaku 10 menit."}}
+        <div class="otp-resend">
+          <span data-otp-countdown></span>
+          <button class="btn btn--ghost btn--sm" type="button" data-action="resend-otp" disabled>Kirim ulang kode</button>
+        </div>
+        <button class="btn btn--primary btn--lg btn--block" type="submit" data-submit>
+          <span class="spinner btn__spinner" aria-hidden="true"></span>
+          <span>Verifikasi &amp; masuk</span>
+        </button>
+        <button class="btn btn--ghost btn--block" type="button" data-action="back-to-account">Ubah data pendaftaran</button>
+      </form>
+
+      <p class="auth__switch">Sudah punya akun? <a href="/masuk/">Masuk</a></p>
+    </section>
+  </div>
+</main>
+{{> footer}}

@@ -1,0 +1,52 @@
+<a class="skip-link" href="#konten">Lompat ke konten utama</a>
+{{> icons}}
+<header class="site-header" data-island="navbar" data-hydrate="load">
+  <div class="container site-header__inner">
+    <a class="brand" href="/" aria-label="Findst, ke beranda">
+      {{> logo}}
+      <span aria-hidden="true">Findst<span class="brand__tld">.id</span></span>
+    </a>
+
+    <nav class="site-nav" aria-label="Navigasi utama">
+      <ul class="site-nav__list" role="list">
+        {{#if page.isApp}}
+        <li><a class="site-nav__link" href="/">Beranda publik</a></li>
+        {{/if}}
+        {{#unless page.isApp}}
+        <li><a class="site-nav__link" href="/#fitur" data-section-link="fitur">Fitur</a></li>
+        <li><a class="site-nav__link" href="/#cara-kerja" data-section-link="cara-kerja">Cara kerja</a></li>
+        <li><a class="site-nav__link" href="/#premium" data-section-link="premium">Premium</a></li>
+        <li><a class="site-nav__link" href="/#faq" data-section-link="faq">FAQ</a></li>
+        {{/unless}}
+      </ul>
+    </nav>
+
+    <div class="site-header__actions">
+      <button class="btn btn--ghost btn--icon theme-toggle" type="button" data-action="toggle-theme" aria-pressed="false">
+        <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+        <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+        <span class="sr-only">Mode gelap</span>
+      </button>
+      <button class="btn btn--ghost btn--icon" type="button" data-action="open-settings" aria-haspopup="dialog" aria-controls="settings-dialog">
+        <svg class="icon" aria-hidden="true"><use href="#i-sliders"/></svg>
+        <span class="sr-only">Pengaturan tampilan</span>
+      </button>
+      <a class="btn btn--ghost" href="/masuk/" data-auth="guest">Masuk</a>
+      <a class="btn btn--primary" href="/daftar/" data-auth="guest">Daftar</a>
+      <a class="btn btn--ghost btn--icon" href="/masuk/" data-profile-link aria-label="Profil: masuk ke akun">
+        <svg class="icon" aria-hidden="true" data-profile-icon><use href="#i-user"/></svg>
+        <span class="avatar" data-profile-initials hidden></span>
+      </a>
+    </div>
+
+    <button class="btn btn--ghost btn--icon site-header__menu" type="button" data-action="open-menu" aria-expanded="false" aria-controls="nav-drawer" aria-haspopup="dialog">
+      <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
+      <span class="sr-only">Buka menu</span>
+    </button>
+  </div>
+</header>
+
+<div class="banner banner--warning net-banner" role="status" data-net-banner hidden>
+  <svg class="icon" aria-hidden="true"><use href="#i-wifi-off"/></svg>
+  <p class="banner__text">Anda sedang offline. Konten yang tersimpan tetap bisa dibaca; aksi lain akan tersedia kembali saat tersambung.</p>
+</div>

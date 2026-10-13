@@ -1,0 +1,75 @@
+/* ==========================================================================
+   AKSESIBILITAS — utilitas pembaca layar, tautan lompat, mode kontras
+   ========================================================================== */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.skip-link {
+  position: fixed;
+  inset-block-start: calc(env(safe-area-inset-top) + var(--space-1));
+  inset-inline-start: var(--space-2);
+  z-index: var(--z-skip);
+  padding: var(--space-1-5) var(--space-2);
+  border-radius: var(--radius-sm);
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  font-weight: var(--weight-semibold);
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform var(--dur-fast) var(--ease-standard);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline-color: var(--color-text);
+}
+
+/* Elemen target konten utama tidak perlu cincin fokus saat dilompati */
+main:focus {
+  outline: none;
+}
+
+/* ---- Reduced motion: matikan animasi non-esensial ---- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---- Forced colors (Windows High Contrast) ---- */
+@media (forced-colors: active) {
+  .btn,
+  .card,
+  .glass,
+  .chip,
+  .field__control {
+    border: 1px solid CanvasText;
+  }
+
+  .btn--primary {
+    background: ButtonText;
+    color: ButtonFace;
+  }
+
+  :focus-visible {
+    outline-color: Highlight;
+  }
+
+  .icon {
+    forced-color-adjust: auto;
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "findst-web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Findst.id — landing page & PWA manajemen investasi saham Indonesia (vanilla HTML/CSS/JS, SSG + Islands).",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "dev": "node scripts/serve.mjs --watch",
+    "build": "node scripts/build.mjs",
+    "serve": "node scripts/serve.mjs",
+    "test": "node --test \"tests/*.test.mjs\"",
+    "fonts": "node scripts/fetch-fonts.mjs",
+    "icons": "powershell -ExecutionPolicy Bypass -File scripts/generate-icons.ps1"
+  }
+}

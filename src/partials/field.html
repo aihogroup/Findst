@@ -1,0 +1,19 @@
+<div class="field" data-field="{{name}}">
+  <div class="field__label-row">
+    <label class="field__label" for="{{id}}">{{label}}{{#if optional}} <span class="field__optional">(opsional)</span>{{/if}}</label>
+    {{{aside}}}
+  </div>
+  {{#if hint}}<p class="field__hint" id="{{id}}-hint">{{hint}}</p>{{/if}}
+  <div class="field__control-wrap">
+    <input class="input{{#if inputClass}} {{inputClass}}{{/if}}" id="{{id}}" name="{{name}}" type="{{type}}"{{#if autocomplete}} autocomplete="{{autocomplete}}"{{/if}}{{#if inputmode}} inputmode="{{inputmode}}"{{/if}}{{#if enterkeyhint}} enterkeyhint="{{enterkeyhint}}"{{/if}}{{#if maxlength}} maxlength="{{maxlength}}"{{/if}}{{#unless optional}} required aria-required="true"{{/unless}} spellcheck="false" autocapitalize="{{#if autocapitalize}}{{autocapitalize}}{{/if}}{{#unless autocapitalize}}off{{/unless}}" aria-describedby="{{#if hint}}{{id}}-hint {{/if}}{{id}}-error">
+    {{#if reveal}}<button class="field__action" type="button" data-reveal="{{id}}" aria-pressed="false" aria-controls="{{id}}">
+      <svg class="icon" aria-hidden="true"><use href="#i-eye"/></svg>
+      <span class="sr-only">Tampilkan kata sandi</span>
+    </button>{{/if}}
+  </div>
+  {{#if meter}}<div class="meter" data-meter-for="{{id}}" data-level="0" aria-hidden="true"><span class="meter__bar"></span><span class="meter__bar"></span><span class="meter__bar"></span><span class="meter__bar"></span></div>
+  <p class="field__hint" data-meter-label-for="{{id}}" aria-live="polite"></p>{{/if}}
+  <p class="field__error" id="{{id}}-error" data-error-for="{{name}}" hidden>
+    <svg class="icon icon--sm" aria-hidden="true"><use href="#i-alert"/></svg><span></span>
+  </p>
+</div>

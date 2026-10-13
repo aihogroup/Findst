@@ -1,0 +1,37 @@
+<!--@page
+{
+  "title": "Dasbor — Findst",
+  "description": "Area pribadi pengguna Findst.",
+  "path": "/app/",
+  "noindex": true,
+  "isApp": true,
+  "pageCss": "app",
+  "sitemap": false
+}
+-->
+{{> head}}
+<body>
+{{> header}}
+<!-- Client-Side Rendering di balik autentikasi. Tidak ada data pribadi di HTML statis ini. -->
+<div class="app-shell" data-island="app-shell" data-hydrate="load">
+  <nav class="app-nav glass" aria-label="Navigasi aplikasi">
+    <ul class="app-nav__list" role="list">
+      <li><a class="app-nav__link" href="/app/" data-route-link><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg>Ringkasan</a></li>
+      <li><a class="app-nav__link" href="/app/watchlist/" data-route-link><svg class="icon" aria-hidden="true"><use href="#i-list"/></svg>Watchlist</a></li>
+      <li><a class="app-nav__link" href="/app/portofolio/" data-route-link><svg class="icon" aria-hidden="true"><use href="#i-pie"/></svg>Portofolio</a></li>
+      <li><a class="app-nav__link" href="/app/akun/" data-route-link><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg>Akun</a></li>
+    </ul>
+  </nav>
+  <main id="konten" class="app-main" tabindex="-1" data-app-view aria-busy="true">
+    <div class="stack" aria-hidden="true">
+      <div class="skeleton skeleton--title"></div>
+      <div class="app-grid">
+        <div class="skeleton" data-skeleton-card></div>
+        <div class="skeleton" data-skeleton-card></div>
+        <div class="skeleton" data-skeleton-card></div>
+      </div>
+    </div>
+    <noscript><p class="form-alert form-alert--info">Area pengguna membutuhkan JavaScript.</p></noscript>
+  </main>
+</div>
+{{> footer}}

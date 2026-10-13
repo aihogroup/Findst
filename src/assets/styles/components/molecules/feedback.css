@@ -1,0 +1,163 @@
+/* ==========================================================================
+   MOLECULES — umpan balik: toast/snackbar, banner, tooltip, state kosong/galat
+   ========================================================================== */
+
+/* ---- Wilayah toast (live region) ---- */
+.toast-region {
+  position: fixed;
+  z-index: var(--z-toast);
+  inset-inline: var(--space-2);
+  inset-block-end: calc(env(safe-area-inset-bottom) + var(--space-2) + var(--toast-offset, 0px));
+  display: grid;
+  gap: var(--space-1);
+  justify-items: center;
+  pointer-events: none;
+  transition: inset-block-end var(--dur-base) var(--ease-standard);
+}
+
+@media (min-width: 48em) {
+  .toast-region {
+    inset-inline: auto var(--space-3);
+    justify-items: end;
+  }
+}
+
+.toast {
+  --_accent: var(--color-info);
+
+  display: flex;
+  align-items: center;
+  gap: var(--space-1-5);
+  width: min(100%, 26rem);
+  min-height: var(--size-target);
+  padding: var(--space-1-5) var(--space-2);
+  border-radius: var(--toast-radius);
+  border: var(--border-1) solid var(--color-border);
+  border-inline-start: 4px solid var(--_accent);
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--elevation-3);
+  font-size: var(--fs-sm);
+  pointer-events: auto;
+  animation: toast-in var(--dur-base) var(--ease-emphasized);
+}
+
+.toast[data-tone="success"] { --_accent: var(--color-success); }
+.toast[data-tone="danger"] { --_accent: var(--color-danger); }
+.toast[data-tone="warning"] { --_accent: var(--color-warning); }
+
+.toast__icon {
+  color: var(--_accent);
+}
+
+.toast__message {
+  flex: 1;
+  min-width: 0;
+}
+
+.toast__action {
+  color: var(--color-primary-text);
+  font-weight: var(--weight-bold);
+  min-height: var(--size-target);
+  padding-inline: var(--space-1);
+  border-radius: var(--radius-sm);
+}
+
+.toast__close {
+  color: var(--color-text-muted);
+}
+
+.toast.is-leaving {
+  animation: toast-out var(--dur-fast) var(--ease-in) forwards;
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(0.5rem) scale(0.98); }
+}
+
+@keyframes toast-out {
+  to { opacity: 0; transform: translateY(0.5rem); }
+}
+
+/* ---- Banner (pengumuman & status jaringan) ---- */
+.banner {
+  --_bg: var(--color-primary-subtle);
+  --_fg: var(--color-text);
+
+  display: flex;
+  align-items: center;
+  gap: var(--space-1-5);
+  padding: var(--space-1) var(--space-gutter);
+  background: var(--_bg);
+  color: var(--_fg);
+  font-size: var(--fs-sm);
+}
+
+.banner__text {
+  flex: 1;
+  min-width: 0;
+}
+
+.banner__text a {
+  font-weight: var(--weight-semibold);
+}
+
+:root:not(.js) [data-dismiss],
+:root[data-ann-dismissed] .announcement {
+  display: none;
+}
+
+.banner--warning {
+  --_bg: var(--color-warning-subtle);
+}
+
+/* Banner offline: menempel di bawah header */
+.net-banner {
+  position: sticky;
+  inset-block-start: var(--nav-height);
+  z-index: calc(var(--z-header) - 1);
+  border-block-end: var(--border-1) solid var(--color-border);
+}
+
+/* ---- Tooltip ---- */
+.tooltip {
+  position: absolute;
+  z-index: var(--z-overlay);
+  max-width: 16rem;
+  padding: var(--space-1) var(--space-1-5);
+  border-radius: var(--radius-sm);
+  background: var(--color-text);
+  color: var(--color-bg);
+  font-size: var(--fs-xs);
+  line-height: var(--leading-normal);
+  box-shadow: var(--elevation-3);
+  pointer-events: none;
+  transform: translate(-50%, calc(-100% - 0.75rem));
+  width: max-content;
+  max-width: min(16rem, 70vw);
+}
+
+/* ---- State: kosong / galat ---- */
+.state {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-1-5);
+  padding: var(--space-4) var(--space-2);
+  border: var(--border-1) dashed var(--color-border-strong);
+  border-radius: var(--radius-md);
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.state__icon {
+  color: var(--color-accent);
+}
+
+.state__title {
+  font-size: var(--fs-lg);
+  color: var(--color-text);
+}
+
+.state--error .state__icon {
+  color: var(--color-danger);
+}

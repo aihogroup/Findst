@@ -1,0 +1,141 @@
+/* ==========================================================================
+   ATOMS — icon, chip/badge, spinner, skeleton, avatar, divider
+   ========================================================================== */
+
+/* ---- Icon (SVG sprite, mewarisi currentColor → tajam di semua DPI) ---- */
+.icon {
+  width: var(--icon-md);
+  height: var(--icon-md);
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vertical-align: middle;
+}
+
+.icon--sm { width: var(--icon-sm); height: var(--icon-sm); }
+.icon--lg { width: var(--icon-lg); height: var(--icon-lg); }
+.icon--xl { width: var(--icon-xl); height: var(--icon-xl); }
+
+/* Ikon berarah dibalik pada tata letak RTL */
+[dir="rtl"] .icon--directional {
+  transform: scaleX(-1);
+}
+
+/* ---- Chip / badge ---- */
+.chip {
+  --_bg: var(--color-surface-2);
+  --_fg: var(--color-text-muted);
+  --_border: var(--color-border);
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-0-5);
+  min-height: 1.75rem;
+  padding: var(--space-0-5) var(--space-1-5);
+  border: var(--border-1) solid var(--_border);
+  border-radius: var(--radius-pill);
+  background: var(--_bg);
+  color: var(--_fg);
+  font-size: var(--fs-xs);
+  font-weight: var(--weight-semibold);
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.chip--primary { --_bg: var(--color-primary-subtle); --_fg: var(--color-primary-text); --_border: transparent; }
+.chip--success { --_bg: var(--color-success-subtle); --_fg: var(--color-success); --_border: transparent; }
+.chip--warning { --_bg: var(--color-warning-subtle); --_fg: var(--color-warning); --_border: transparent; }
+.chip--danger { --_bg: var(--color-danger-subtle); --_fg: var(--color-danger); --_border: transparent; }
+
+/* Label “Contoh tampilan”: wajib pada setiap ilustrasi data */
+.chip--example {
+  --_bg: var(--color-surface);
+  --_fg: var(--color-text-muted);
+  --_border: var(--color-border-strong);
+  font-style: italic;
+}
+
+/* ---- Spinner (hanya untuk proses singkat) ---- */
+.spinner {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-inline-end-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex: none;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation: pulse 1.2s ease-in-out infinite;
+    border-inline-end-color: currentColor;
+    opacity: 0.6;
+  }
+}
+
+/* ---- Skeleton + shimmer (berdimensi akhir → tanpa pergeseran layout) ---- */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-sunken);
+}
+
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, var(--glass-highlight), transparent);
+  animation: shimmer 1.4s var(--ease-standard) infinite;
+}
+
+[dir="rtl"] .skeleton::after {
+  animation-direction: reverse;
+}
+
+.skeleton--text { height: 1em; margin-block: 0.3em; }
+.skeleton--title { height: 1.6em; width: 60%; }
+
+@keyframes shimmer {
+  to { transform: translateX(100%); }
+}
+
+@keyframes pulse {
+  50% { opacity: 0.3; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton::after { animation: none; }
+}
+
+/* ---- Avatar ---- */
+.avatar {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--color-primary-subtle);
+  color: var(--color-primary-text);
+  font-size: var(--fs-sm);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+}
+
+/* ---- Divider ---- */
+.divider {
+  border: 0;
+  border-block-start: var(--border-1) solid var(--color-border);
+  margin-block: var(--space-3);
+}

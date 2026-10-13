@@ -1,0 +1,42 @@
+<!--@page
+{
+  "title": "Masuk — Findst",
+  "description": "Masuk ke akun Findst untuk memantau watchlist dan sinyal ambang dinamis saham Indonesia Anda.",
+  "path": "/masuk/",
+  "pageCss": "auth",
+  "sitemap": { "priority": "0.5", "changefreq": "yearly" }
+}
+-->
+{{> head}}
+<body>
+{{> header}}
+<main id="konten" class="auth" tabindex="-1">
+  <div class="container auth__layout">
+    {{> auth-aside}}
+    <section class="card auth__card" aria-labelledby="login-title" data-island="auth" data-hydrate="load" data-auth-flow="login">
+      <div class="stack u-gap-1">
+        <h1 class="auth__title" id="login-title">Masuk ke Findst</h1>
+        <p class="u-text-muted">Selamat datang kembali. Masukkan email dan kata sandi Anda.</p>
+      </div>
+
+      <noscript><p class="form-alert form-alert--info">Aktifkan JavaScript untuk masuk ke akun Anda.</p></noscript>
+      <div class="form-alert" role="alert" data-form-alert hidden></div>
+
+      <form class="auth__form" data-step="login" novalidate>
+        {{> field id="login-email" name="email" type="email" label="Email" autocomplete="username" inputmode="email" enterkeyhint="next"}}
+        {{> field id="login-password" name="password" type="password" label="Kata sandi" autocomplete="current-password" enterkeyhint="go" reveal="1" aside='<a class="u-text-sm" href="/lupa-sandi/">Lupa kata sandi?</a>'}}
+        <label class="checkbox-row">
+          <input class="checkbox" type="checkbox" name="remember" value="1" checked>
+          <span>Tetap masuk di perangkat ini selama 30 hari</span>
+        </label>
+        <button class="btn btn--primary btn--lg btn--block" type="submit" data-submit>
+          <span class="spinner btn__spinner" aria-hidden="true"></span>
+          <span>Masuk</span>
+        </button>
+      </form>
+
+      <p class="auth__switch">Belum punya akun? <a href="/daftar/">Daftar gratis</a></p>
+    </section>
+  </div>
+</main>
+{{> footer}}

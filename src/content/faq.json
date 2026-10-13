@@ -1,0 +1,45 @@
+{
+  "version": "2026-10-07T00:00:00.000Z",
+  "items": [
+    {
+      "id": "apa-itu-findst",
+      "question": "Apa itu Findst?",
+      "answer": "Findst adalah aplikasi manajemen investasi saham Indonesia yang memakai machine learning dengan metode dynamic threshold untuk membantu Anda menyaring, memantau, dan mengevaluasi saham di Bursa Efek Indonesia. Findst adalah alat bantu analisis, bukan penasihat investasi; keputusan jual-beli tetap sepenuhnya di tangan Anda."
+    },
+    {
+      "id": "dynamic-threshold",
+      "question": "Apa yang dimaksud dengan dynamic threshold?",
+      "answer": "Dynamic threshold adalah ambang batas keputusan yang tidak bernilai tetap. Parameternya dihitung ulang secara berkala mengikuti kondisi bursa, misalnya volatilitas dan likuiditas. Saat pasar bergejolak, ambang menjadi lebih ketat sehingga sinyal yang muncul lebih selektif; saat pasar tenang, ambang lebih longgar."
+    },
+    {
+      "id": "jaminan-keuntungan",
+      "question": "Apakah Findst menjamin keuntungan?",
+      "answer": "Tidak. Investasi saham mengandung risiko, termasuk kemungkinan kehilangan sebagian atau seluruh modal. Hasil uji historis model tidak menjamin hasil di masa depan. Gunakan Findst sebagai bahan pertimbangan dan sesuaikan dengan profil risiko Anda."
+    },
+    {
+      "id": "transaksi",
+      "question": "Apakah Findst melakukan transaksi atas nama saya?",
+      "answer": "Tidak. Findst tidak mengeksekusi transaksi dan tidak meminta akses ke rekening efek Anda. Anda tetap bertransaksi melalui perusahaan sekuritas pilihan Anda."
+    },
+    {
+      "id": "pasang-aplikasi",
+      "question": "Apakah saya harus memasang aplikasi?",
+      "answer": "Tidak wajib. Findst berjalan langsung di browser. Anda dapat memasangnya sebagai aplikasi (PWA) di Android, iOS, Windows, macOS, maupun Linux agar terbuka lebih cepat dan halaman publik yang pernah dibuka tetap tersedia saat offline."
+    },
+    {
+      "id": "keamanan-data",
+      "question": "Bagaimana Findst menjaga data saya?",
+      "answer": "Seluruh koneksi memakai HTTPS, kata sandi tidak disimpan dalam bentuk aslinya, dan data pribadi maupun konten premium tidak disimpan di cache publik perangkat. Rincian lengkap tersedia di halaman Kebijakan Privasi."
+    },
+    {
+      "id": "gratis-premium",
+      "question": "Apa beda akun gratis dan premium?",
+      "answer": "Akun gratis memberi akses ke watchlist, ringkasan kondisi pasar, dan edukasi dasar tentang dynamic threshold. Akun premium menambahkan pemindaian sinyal lengkap, riwayat evaluasi model, notifikasi kustom, dan ekspor data."
+    },
+    {
+      "id": "atur-tampilan",
+      "question": "Bisakah saya mengatur tampilan aplikasi?",
+      "answer": "Bisa. Melalui panel Tampilan Anda dapat memilih tema terang atau gelap, jenis huruf (Serif, Poppins, atau Arial), serta ukuran huruf. Pilihan tersimpan di perangkat dan diterapkan otomatis pada kunjungan berikutnya."
+    }
+  ]
+}

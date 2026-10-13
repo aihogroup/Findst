@@ -1,0 +1,226 @@
+/* ==========================================================================
+   ORGANISM — SITE HEADER / NAVBAR (sticky, kaca)
+   < 64em : grup kanan disembunyikan → satu tombol menu (drawer <dialog>)
+   ≥ 64em : tautan section + pengalih tema + masuk + daftar + profil
+   Tanpa JS: tautan tampil sebagai baris gulir horizontal (progressive enh.)
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: var(--z-header);
+  padding-block-start: env(safe-area-inset-top);
+  border-block-end: var(--border-1) solid transparent;
+  transition:
+    border-color var(--dur-base) var(--ease-standard),
+    box-shadow var(--dur-base) var(--ease-standard);
+}
+
+.site-header[data-scrolled] {
+  border-block-end-color: var(--color-border);
+  box-shadow: var(--elevation-1);
+}
+
+/* Kaca header memakai pola degradasi yang sama dengan .glass */
+.site-header {
+  background: var(--color-bg);
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .site-header {
+    background: var(--glass-bar-bg);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  }
+}
+
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .site-header {
+    background: var(--color-bg);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+:root[data-perf="low"] .site-header {
+  background: var(--color-bg);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--nav-height);
+}
+
+/* ---- Brand ---- */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: var(--size-target);
+  margin-inline-end: auto;
+  color: var(--color-text);
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-size: var(--fs-xl);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.02em;
+}
+
+.brand__mark {
+  width: 2rem;
+  height: 2rem;
+  flex: none;
+}
+
+.brand__mark-bg { fill: var(--color-primary); }
+.brand__mark-fg,
+.brand__mark-accent {
+  fill: none;
+  stroke: var(--color-on-primary);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.brand__mark-fg { stroke-width: 3; }
+.brand__mark-accent { stroke-width: 2; opacity: 0.7; }
+
+.brand__tld {
+  color: var(--color-primary-text);
+}
+
+/* ---- Navigasi section ---- */
+.site-nav__list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-0-5);
+}
+
+.site-nav__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--size-target);
+  padding-inline: var(--space-1-5);
+  border-radius: var(--radius-pill);
+  color: var(--color-text-muted);
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+  transition:
+    color var(--dur-fast) var(--ease-standard),
+    background-color var(--dur-fast) var(--ease-standard);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .site-nav__link:hover {
+    color: var(--color-text);
+    background: var(--color-primary-subtle);
+  }
+}
+
+/* Section aktif: warna + garis bawah (bentuk) */
+.site-nav__link[aria-current] {
+  color: var(--color-primary-text);
+}
+
+.site-nav__link[aria-current]::after {
+  content: "";
+  position: absolute;
+  inset-inline: var(--space-1-5);
+  inset-block-end: 0.4rem;
+  height: 2px;
+  border-radius: var(--radius-pill);
+  background: currentColor;
+}
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+/* Ikon pengalih tema: bentuk berbeda (matahari/bulan) per status */
+.theme-toggle .icon-moon,
+:root[data-theme="dark"] .theme-toggle .icon-sun {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-moon {
+  display: inline-block;
+}
+
+/* ---- Mobile-first: sembunyikan nav & aksi, tampilkan tombol menu ---- */
+.site-header .site-nav,
+.site-header__actions {
+  display: none;
+}
+
+.site-header__menu {
+  display: inline-flex;
+}
+
+/* Tanpa JS: tautan tetap dapat diakses sebagai baris gulir */
+:root:not(.js) .site-header__inner {
+  flex-wrap: wrap;
+}
+
+:root:not(.js) .site-header .site-nav {
+  display: block;
+  order: 3;
+  width: 100%;
+  overflow-x: auto;
+  padding-block-end: var(--space-1);
+}
+
+:root:not(.js) .site-header__menu {
+  display: none;
+}
+
+@media (min-width: 64em) {
+  .site-header .site-nav,
+  :root:not(.js) .site-header .site-nav {
+    display: block;
+    order: 0;
+    width: auto;
+    padding: 0;
+  }
+
+  .site-header__actions {
+    display: flex;
+  }
+
+  .site-header__menu {
+    display: none;
+  }
+}
+
+/* ---- Konten drawer menu ---- */
+.drawer-nav__list {
+  display: grid;
+  gap: var(--space-0-5);
+}
+
+.drawer-nav__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--size-target-lg);
+  padding-inline: var(--space-2);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  font-size: var(--fs-lg);
+  text-decoration: none;
+}
+
+.drawer-nav__link[aria-current] {
+  background: var(--color-primary-subtle);
+  color: var(--color-primary-text);
+  font-weight: var(--weight-semibold);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .drawer-nav__link:hover {
+    background: var(--color-surface-2);
+  }
+}

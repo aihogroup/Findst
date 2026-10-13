@@ -1,0 +1,167 @@
+/* ==========================================================================
+   ORGANISM — DIALOG (<dialog> native: focus trap, Escape, backdrop)
+   Varian: .dialog (modal tengah) · .dialog--drawer (samping) ·
+           .dialog--sheet (bottom sheet di ponsel → modal di ≥48em)
+   Slot:   .dialog__header · .dialog__body · .dialog__footer
+   ========================================================================== */
+.dialog {
+  width: min(100% - 2 * var(--space-gutter), var(--dialog-max-width));
+  max-height: min(90dvh, 48rem);
+  margin: auto;
+  border: var(--border-1) solid var(--color-border);
+  border-radius: var(--dialog-radius);
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--elevation-4);
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+
+.dialog[open] {
+  display: flex;
+  flex-direction: column;
+  animation: dialog-in var(--dur-base) var(--ease-emphasized);
+}
+
+.dialog.is-closing {
+  animation: dialog-out var(--dur-fast) var(--ease-in) forwards;
+}
+
+/* ::backdrop tidak selalu mewarisi custom property → nilai literal */
+.dialog::backdrop {
+  background: rgb(0 0 0 / 0.5);
+  animation: fade-in var(--dur-base) var(--ease-standard);
+}
+
+.dialog.is-closing::backdrop {
+  animation: fade-out var(--dur-fast) var(--ease-in) forwards;
+}
+
+.dialog__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-2) var(--space-1) var(--space-3);
+}
+
+.dialog__title {
+  flex: 1;
+  font-size: var(--fs-xl);
+}
+
+.dialog__body {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-1) var(--space-3) var(--space-3);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.dialog__footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  justify-content: flex-end;
+  padding: var(--space-2) var(--space-3) calc(var(--space-2) + env(safe-area-inset-bottom));
+  border-block-start: var(--border-1) solid var(--color-border);
+}
+
+/* Pegangan geser (bottom sheet) */
+.dialog__grabber {
+  display: none;
+  width: 2.5rem;
+  height: 0.3rem;
+  margin: var(--space-1) auto 0;
+  border-radius: var(--radius-pill);
+  background: var(--color-border-strong);
+  touch-action: none;
+}
+
+/* ---- Drawer ---- */
+.dialog--drawer {
+  width: min(22rem, 88vw);
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0;
+  margin-inline-start: auto;
+  border-radius: 0;
+  border-start-start-radius: var(--dialog-radius);
+  border-end-start-radius: var(--dialog-radius);
+  padding-block: env(safe-area-inset-top) env(safe-area-inset-bottom);
+  padding-inline-end: env(safe-area-inset-right);
+}
+
+.dialog--drawer[open] {
+  animation-name: drawer-in;
+}
+
+.dialog--drawer.is-closing {
+  animation-name: drawer-out;
+}
+
+/* ---- Bottom sheet (mobile) ---- */
+@media (max-width: 47.99em) {
+  .dialog--sheet {
+    width: 100%;
+    max-width: 100%;
+    max-height: 92dvh;
+    margin: auto 0 0;
+    border-end-start-radius: 0;
+    border-end-end-radius: 0;
+  }
+
+  .dialog--sheet[open] {
+    animation-name: sheet-in;
+  }
+
+  .dialog--sheet.is-closing {
+    animation-name: sheet-out;
+  }
+
+  .dialog--sheet .dialog__grabber {
+    display: block;
+  }
+}
+
+@keyframes dialog-in {
+  from { opacity: 0; transform: translateY(0.75rem) scale(0.98); }
+}
+
+@keyframes dialog-out {
+  to { opacity: 0; transform: translateY(0.5rem) scale(0.98); }
+}
+
+@keyframes drawer-in {
+  from { transform: translateX(100%); }
+}
+
+@keyframes drawer-out {
+  to { transform: translateX(100%); }
+}
+
+[dir="rtl"] .dialog--drawer[open] { animation-name: drawer-in-rtl; }
+[dir="rtl"] .dialog--drawer.is-closing { animation-name: drawer-out-rtl; }
+
+@keyframes drawer-in-rtl {
+  from { transform: translateX(-100%); }
+}
+
+@keyframes drawer-out-rtl {
+  to { transform: translateX(-100%); }
+}
+
+@keyframes sheet-in {
+  from { transform: translateY(100%); }
+}
+
+@keyframes sheet-out {
+  to { transform: translateY(100%); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+}
+
+@keyframes fade-out {
+  to { opacity: 0; }
+}

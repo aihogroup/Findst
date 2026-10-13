@@ -1,0 +1,370 @@
+<!--@page
+{
+  "title": "Findst — Manajemen Investasi Saham Indonesia dengan Dynamic Threshold",
+  "description": "Findst membantu menyaring dan memantau saham BEI dengan machine learning. Ambang keputusan dihitung ulang mengikuti kondisi bursa. Gratis dicoba.",
+  "path": "/",
+  "asyncCss": true,
+  "jsonLd": ["organization", "website", "faq"],
+  "sitemap": { "priority": "1.0", "changefreq": "weekly" }
+}
+-->
+{{> head}}
+<body>
+{{> header}}
+
+{{{announcement}}}
+
+<main id="konten" class="site-main" tabindex="-1">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" aria-labelledby="hero-title" data-island="hero" data-hydrate="load">
+    <div class="container hero__inner">
+      <div class="hero__copy">
+        <p class="eyebrow"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-sparkles"/></svg>Machine learning · Dynamic threshold</p>
+        <h1 class="hero__title" id="hero-title">Investasi saham Indonesia dengan ambang keputusan yang <em>terus belajar</em>.</h1>
+        <p class="hero__lead">Findst membantu Anda menyaring dan memantau saham di Bursa Efek Indonesia. Parameter keputusan dihitung ulang mengikuti kondisi pasar: lebih ketat saat bergejolak, lebih longgar saat tenang.</p>
+        <div class="cluster hero__actions">
+          <a class="btn btn--primary btn--lg" href="/daftar/" data-haptic>
+            Daftar gratis
+            <svg class="icon btn__icon icon--directional" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+          </a>
+          <a class="btn btn--secondary btn--lg" href="#cara-kerja">Lihat cara kerja</a>
+        </div>
+        <ul class="hero__trust" role="list">
+          <li><svg class="icon icon--sm" aria-hidden="true"><use href="#i-check"/></svg>Tanpa kartu kredit</li>
+          <li><svg class="icon icon--sm" aria-hidden="true"><use href="#i-check"/></svg>Bisa dipasang sebagai aplikasi</li>
+          <li><svg class="icon icon--sm" aria-hidden="true"><use href="#i-check"/></svg>Mode gelap OLED</li>
+        </ul>
+        <p class="market-clock" data-island="market-clock" data-hydrate="idle" data-state="unknown">
+          <span class="market-clock__dot" aria-hidden="true"></span>
+          <span data-market-text>Perdagangan BEI: Senin–Jumat, 09.00–15.50 WIB.</span>
+        </p>
+      </div>
+
+      <div class="hero__visual" role="img" aria-label="Contoh tampilan antarmuka Findst: grafik skor sinyal terhadap ambang dinamis, indikator rezim pasar, dan penyesuaian ambang. Data ilustrasi, bukan rekomendasi." data-island="hero-parallax" data-hydrate="idle" data-hydrate-media="(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)">
+        <div class="hero-card hero-card--main glass">
+          <div class="hero-card__head">
+            <span class="hero-card__title">SAHAM-A</span>
+            <span class="chip chip--example">Contoh tampilan</span>
+          </div>
+          <svg class="hero-spark" viewBox="0 0 280 96" width="280" height="96" aria-hidden="true" focusable="false">
+            <path class="hero-spark__band" d="M0 44 56 42 112 40 168 36 224 32 280 28V44L224 48 168 52 112 56 56 58 0 60Z"/>
+            <path class="hero-spark__threshold" d="M0 52 56 50 112 48 168 44 224 40 280 36"/>
+            <path class="hero-spark__line" d="M0 70 28 62 56 66 84 50 112 54 140 40 168 44 196 30 224 34 252 22 280 18"/>
+            <circle class="hero-spark__dot" cx="140" cy="40" r="4.5"/>
+          </svg>
+          <div class="u-flex u-justify-between u-gap-2">
+            <div><div class="hero-card__meta">Skor sinyal</div><div class="hero-card__value tabular">0,71</div></div>
+            <div class="u-text-end"><div class="hero-card__meta">Ambang dinamis</div><div class="hero-card__value tabular">0,64</div></div>
+          </div>
+          <p class="hero-card__meta">Ilustrasi, bukan rekomendasi.</p>
+        </div>
+
+        <div class="hero-card hero-card--regime glass">
+          <div class="hero-card__head">
+            <span class="hero-card__title">Rezim pasar</span>
+            <span class="chip chip--example">Contoh tampilan</span>
+          </div>
+          <div class="hero-card__value">Normal</div>
+          <div class="regime-meter" aria-hidden="true"><span></span><span></span><span></span></div>
+          <p class="hero-card__meta">Volatilitas 20 hari: sedang</p>
+        </div>
+
+        <div class="hero-card hero-card--chip glass">
+          <svg class="icon icon--sm u-text-primary" aria-hidden="true"><use href="#i-trend"/></svg>
+          <span class="u-font-semibold">Ambang +0,03</span>
+          <span class="chip chip--example">Contoh</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FITUR (BENTO) ================= -->
+  <section class="section" id="fitur" aria-labelledby="fitur-title">
+    <div class="container">
+      <header class="section__header">
+        <p class="eyebrow">Fitur</p>
+        <h2 id="fitur-title">Semua yang Anda perlukan untuk memantau saham dengan tenang</h2>
+        <p class="lead">Dirancang untuk investor ritel Indonesia: ringkas di ponsel, lengkap di desktop.</p>
+      </header>
+
+      <ul class="bento" role="list">
+        <li class="card bento__item bento__item--feature">
+          <span class="card__icon"><svg class="icon icon--lg" aria-hidden="true"><use href="#i-sparkles"/></svg></span>
+          <h3 class="card__title">Ambang keputusan yang menyesuaikan pasar</h3>
+          <p class="card__body">Alih-alih satu angka tetap, Findst menghitung ambang dari rata-rata bergulir dan sebaran skor sinyal, lalu menyesuaikan kepekaannya dengan rezim pasar saat itu. Hasilnya: lebih sedikit sinyal palsu saat bursa bergejolak.</p>
+          <div class="bento__visual" aria-hidden="true">
+            <svg viewBox="0 0 320 120" width="320" height="120" class="u-w-full">
+              <path class="tc-band" d="M0 52 80 46 160 40 240 30 320 24V64L240 70 160 72 80 74 0 76Z"/>
+              <path class="tc-static" d="M0 56H320"/>
+              <path class="tc-threshold" d="M0 64 80 60 160 56 240 50 320 44"/>
+              <path class="tc-line" d="M0 92 40 80 80 84 120 64 160 70 200 46 240 54 280 30 320 26"/>
+            </svg>
+          </div>
+          <div class="card__footer">
+            <a class="btn btn--secondary btn--sm" href="#ambang-dinamis">Lihat diagram interaktif</a>
+          </div>
+        </li>
+        <li class="card bento__item">
+          <span class="card__icon"><svg class="icon icon--lg" aria-hidden="true"><use href="#i-gauge"/></svg></span>
+          <h3 class="card__title">Deteksi rezim pasar</h3>
+          <p class="card__body">Kondisi bursa dikelompokkan menjadi tenang, normal, atau bergejolak sebagai dasar penyesuaian parameter.</p>
+        </li>
+        <li class="card bento__item">
+          <span class="card__icon"><svg class="icon icon--lg" aria-hidden="true"><use href="#i-shield"/></svg></span>
+          <h3 class="card__title">Manajemen risiko</h3>
+          <p class="card__body">Ukuran posisi dan batas kerugian dihitung dari volatilitas tiap saham, bukan angka seragam.</p>
+        </li>
+        <li class="card card--adaptive bento__item bento__item--wide">
+          <span class="card__icon"><svg class="icon icon--lg" aria-hidden="true"><use href="#i-bell"/></svg></span>
+          <div class="stack u-gap-1">
+            <h3 class="card__title">Watchlist &amp; notifikasi</h3>
+            <p class="card__body">Pantau saham pilihan dan dapatkan pemberitahuan ketika skor sinyal melewati ambang dinamisnya.</p>
+            <div class="cluster" aria-label="Contoh notifikasi">
+              <span class="chip chip--example">Contoh tampilan</span>
+              <span class="chip chip--primary">SAHAM-B melewati ambang</span>
+              <span class="chip">Rezim berubah: normal</span>
+            </div>
+          </div>
+        </li>
+        <li class="card bento__item">
+          <span class="card__icon"><svg class="icon icon--lg" aria-hidden="true"><use href="#i-layers"/></svg></span>
+          <h3 class="card__title">Evaluasi berkelanjutan</h3>
+          <p class="card__body">Kinerja model diuji ulang secara berkala; parameter diperbarui bila hasilnya menyimpang.</p>
+        </li>
+        <li class="card bento__item">
+          <span class="card__icon"><svg class="icon icon--lg" aria-hidden="true"><use href="#i-book"/></svg></span>
+          <h3 class="card__title">Jurnal investasi</h3>
+          <p class="card__body">Catat alasan setiap keputusan dan bandingkan dengan sinyal untuk belajar dari pola Anda sendiri.</p>
+        </li>
+        <li class="card card--adaptive bento__item bento__item--wide">
+          <span class="card__icon"><svg class="icon icon--lg" aria-hidden="true"><use href="#i-smartphone"/></svg></span>
+          <div class="stack u-gap-1">
+            <h3 class="card__title">Satu akun, semua perangkat</h3>
+            <p class="card__body">Berjalan di browser dan dapat dipasang sebagai aplikasi di Android, iOS, Windows, macOS, dan Linux.</p>
+            <div class="bento__platforms">
+              <span class="chip">Android</span><span class="chip">iOS</span><span class="chip">Windows</span><span class="chip">macOS</span><span class="chip">Linux</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= DIAGRAM AMBANG DINAMIS (island) ================= -->
+  <section class="section" id="ambang-dinamis" aria-labelledby="ambang-title">
+    <div class="container threshold">
+      <header class="section__header">
+        <p class="eyebrow">Diagram interaktif</p>
+        <h2 id="ambang-title">Ambang statis vs ambang dinamis</h2>
+        <p class="lead">Ubah kondisi pasar simulasi dan perhatikan bagaimana ambang dinamis menyesuaikan diri, sementara ambang statis tetap di tempat.</p>
+      </header>
+
+      <div class="card threshold__panel" data-island="threshold-diagram" data-hydrate="visible">
+        <div class="cluster u-justify-between threshold__controls">
+          <fieldset class="segmented">
+            <legend class="segmented__legend">Kondisi pasar (simulasi)</legend>
+            <div class="segmented__options">
+              <label class="segmented__option"><input class="visually-hidden-input" type="radio" name="regime" value="calm"><span class="segmented__face"><svg class="icon icon--sm segmented__check" aria-hidden="true"><use href="#i-check"/></svg>Tenang</span></label>
+              <label class="segmented__option"><input class="visually-hidden-input" type="radio" name="regime" value="normal" checked><span class="segmented__face"><svg class="icon icon--sm segmented__check" aria-hidden="true"><use href="#i-check"/></svg>Normal</span></label>
+              <label class="segmented__option"><input class="visually-hidden-input" type="radio" name="regime" value="volatile"><span class="segmented__face"><svg class="icon icon--sm segmented__check" aria-hidden="true"><use href="#i-check"/></svg>Bergejolak</span></label>
+            </div>
+          </fieldset>
+          <span class="chip chip--example">Contoh tampilan · data simulasi</span>
+        </div>
+
+        <figure class="stack u-gap-2">
+          <div class="threshold__chart" data-chart>
+            <div class="skeleton" aria-hidden="true"></div>
+            <noscript><p class="u-text-muted">Diagram interaktif membutuhkan JavaScript. Ringkasnya: ambang dinamis naik saat pasar bergejolak sehingga sinyal lebih selektif, dan turun saat pasar tenang.</p></noscript>
+          </div>
+          <figcaption class="threshold__legend">
+            <span class="legend-key"><span class="legend-key__swatch" aria-hidden="true"></span>Skor sinyal</span>
+            <span class="legend-key"><span class="legend-key__swatch legend-key__swatch--threshold" aria-hidden="true"></span>Ambang dinamis</span>
+            <span class="legend-key"><span class="legend-key__swatch legend-key__swatch--band" aria-hidden="true"></span>Rentang adaptif</span>
+            <span class="legend-key"><span class="legend-key__swatch legend-key__swatch--static" aria-hidden="true"></span>Ambang statis 0,60</span>
+            <span class="legend-key"><span class="legend-key__swatch legend-key__swatch--signal" aria-hidden="true"></span>Sinyal</span>
+          </figcaption>
+        </figure>
+
+        <div class="threshold__summary" data-summary>
+          <div class="metric"><div class="metric__label">Sinyal ambang statis</div><div class="metric__value tabular" data-metric="static">–</div></div>
+          <div class="metric"><div class="metric__label">Sinyal ambang dinamis</div><div class="metric__value tabular" data-metric="dynamic">–</div></div>
+          <div class="metric"><div class="metric__label">Pengali k (rezim)</div><div class="metric__value tabular" data-metric="k">–</div></div>
+        </div>
+        <p class="sr-only" aria-live="polite" data-chart-status></p>
+
+        <details class="threshold__data">
+          <summary class="disclosure-summary">Lihat data sebagai tabel</summary>
+          <div class="data-table-wrap u-mt-1" data-table tabindex="0" role="region" aria-label="Tabel data diagram ambang"></div>
+        </details>
+        <p class="u-text-xs u-text-muted">Gunakan tombol panah kiri/kanan saat diagram terfokus untuk menelusuri setiap titik data.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CARA KERJA ================= -->
+  <section class="section" id="cara-kerja" aria-labelledby="cara-kerja-title">
+    <div class="container">
+      <header class="section__header">
+        <p class="eyebrow">Cara kerja</p>
+        <h2 id="cara-kerja-title">Empat tahap dari data menjadi keputusan</h2>
+        <p class="lead">Setiap tahap berjalan ulang mengikuti hari bursa, sehingga parameter tidak pernah usang.</p>
+      </header>
+
+      <ol class="steps" data-island="disclosure" data-hydrate="visible">
+        <li class="step">
+          <span class="step__number" aria-hidden="true">1</span>
+          <h3 class="step__title">Mengumpulkan data pasar</h3>
+          <p class="step__summary">Harga, volume, dan likuiditas saham BEI diperbarui setiap hari bursa.</p>
+          <button class="btn btn--ghost btn--sm step__toggle" type="button" aria-expanded="false" aria-controls="step-detail-1">Selengkapnya<svg class="icon icon--sm" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
+          <div class="step__detail" id="step-detail-1" hidden="until-found"><div class="step__detail-inner">Data dibersihkan dari anomali seperti suspensi perdagangan dan aksi korporasi sebelum diproses, agar model tidak salah membaca lonjakan harga semu.</div></div>
+        </li>
+        <li class="step">
+          <span class="step__number" aria-hidden="true">2</span>
+          <h3 class="step__title">Membaca rezim pasar</h3>
+          <p class="step__summary">Model mengelompokkan kondisi bursa menjadi tenang, normal, atau bergejolak.</p>
+          <button class="btn btn--ghost btn--sm step__toggle" type="button" aria-expanded="false" aria-controls="step-detail-2">Selengkapnya<svg class="icon icon--sm" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
+          <div class="step__detail" id="step-detail-2" hidden="until-found"><div class="step__detail-inner">Pengelompokan memakai volatilitas, sebaran pergerakan antarsaham, dan breadth pasar. Rezim menentukan seberapa ketat ambang pada tahap berikutnya.</div></div>
+        </li>
+        <li class="step">
+          <span class="step__number" aria-hidden="true">3</span>
+          <h3 class="step__title">Menghitung ambang dinamis</h3>
+          <p class="step__summary">Ambang = rata-rata bergulir skor + k × simpangan baku, dengan k mengikuti rezim.</p>
+          <button class="btn btn--ghost btn--sm step__toggle" type="button" aria-expanded="false" aria-controls="step-detail-3">Selengkapnya<svg class="icon icon--sm" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
+          <div class="step__detail" id="step-detail-3" hidden="until-found"><div class="step__detail-inner">Saat pasar bergejolak, nilai k membesar sehingga hanya skor yang benar-benar menonjol yang memicu sinyal. Saat tenang, k mengecil agar peluang tidak terlewat.</div></div>
+        </li>
+        <li class="step">
+          <span class="step__number" aria-hidden="true">4</span>
+          <h3 class="step__title">Evaluasi &amp; umpan balik</h3>
+          <p class="step__summary">Hasil sinyal dievaluasi dan parameter diperbarui bila kinerjanya menyimpang.</p>
+          <button class="btn btn--ghost btn--sm step__toggle" type="button" aria-expanded="false" aria-controls="step-detail-4">Selengkapnya<svg class="icon icon--sm" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
+          <div class="step__detail" id="step-detail-4" hidden="until-found"><div class="step__detail-inner">Evaluasi memakai pengujian walk-forward pada data yang belum pernah dilihat model, sehingga penyesuaian parameter tidak sekadar mengikuti data masa lalu.</div></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================= PREMIUM ================= -->
+  <section class="section" id="premium" aria-labelledby="premium-title">
+    <div class="container premium">
+      <div class="stack">
+        <p class="eyebrow">Findst Premium</p>
+        <h2 id="premium-title">Analisis lebih dalam untuk keputusan yang lebih tenang</h2>
+        <ul class="check-list" role="list">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg><span><strong>Pemindaian sinyal lengkap</strong> untuk seluruh saham BEI berdasarkan ambang dinamis.</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg><span><strong>Riwayat evaluasi model</strong> beserta alasan di balik setiap sinyal.</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg><span><strong>Notifikasi kustom</strong> per saham dan per perubahan rezim pasar.</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg><span><strong>Ekspor data</strong> ke CSV untuk analisis lanjutan.</span></li>
+        </ul>
+        <div class="cluster">
+          <a class="btn btn--primary" href="/daftar/?paket=premium">Coba Premium</a>
+          <a class="btn btn--ghost" href="#faq">Bandingkan paket</a>
+        </div>
+      </div>
+
+      <div class="preview glass">
+        <!-- Hanya data CONTOH statis: tidak ada data nyata di DOM -->
+        <div class="preview__content" aria-hidden="true" inert>
+          <table class="mock-table">
+            <thead><tr><th>Saham</th><th>Skor</th><th>Ambang</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>CONTOH-1</td><td>0,00</td><td>0,00</td><td>—</td></tr>
+              <tr><td>CONTOH-2</td><td>0,00</td><td>0,00</td><td>—</td></tr>
+              <tr><td>CONTOH-3</td><td>0,00</td><td>0,00</td><td>—</td></tr>
+              <tr><td>CONTOH-4</td><td>0,00</td><td>0,00</td><td>—</td></tr>
+              <tr><td>CONTOH-5</td><td>0,00</td><td>0,00</td><td>—</td></tr>
+              <tr><td>CONTOH-6</td><td>0,00</td><td>0,00</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="preview__overlay">
+          <span class="preview__lock"><svg class="icon icon--lg" aria-hidden="true"><use href="#i-lock"/></svg></span>
+          <h3>Konten khusus Premium</h3>
+          <p class="u-text-muted u-text-sm">Pratinjau ini hanya berisi data contoh. Data pemindaian sesungguhnya tersedia setelah masuk dengan akun Premium.</p>
+          <a class="btn btn--primary" href="/daftar/?paket=premium">Buka dengan Premium</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PASANG APLIKASI (PWA) ================= -->
+  <section class="section" id="pasang" aria-labelledby="pasang-title">
+    <div class="container">
+      <div class="install glass">
+        <div class="stack">
+          <p class="eyebrow">Aplikasi</p>
+          <h2 id="pasang-title">Pasang Findst di perangkat Anda</h2>
+          <p class="lead">Terbuka lebih cepat dari layar utama, tampil penuh tanpa bilah browser, dan halaman publik yang pernah dibuka tetap tersedia saat offline.</p>
+          <div class="cluster">
+            <button class="btn btn--primary btn--lg install-btn" type="button" data-install-button data-state="idle">
+              <span class="spinner btn__spinner" aria-hidden="true"></span>
+              <svg class="icon btn__icon" aria-hidden="true" data-install-icon><use href="#i-download"/></svg>
+              <span data-install-label>Pasang aplikasi</span>
+            </button>
+          </div>
+          <p class="u-text-sm u-text-muted" data-install-status aria-live="polite"></p>
+        </div>
+        <ul class="install__devices" role="list" aria-label="Platform yang didukung">
+          <li class="device-chip"><svg class="icon icon--lg" aria-hidden="true"><use href="#i-smartphone"/></svg>Android</li>
+          <li class="device-chip"><svg class="icon icon--lg" aria-hidden="true"><use href="#i-tablet"/></svg>iPhone &amp; iPad</li>
+          <li class="device-chip"><svg class="icon icon--lg" aria-hidden="true"><use href="#i-monitor"/></svg>Windows</li>
+          <li class="device-chip"><svg class="icon icon--lg" aria-hidden="true"><use href="#i-laptop"/></svg>macOS</li>
+          <li class="device-chip"><svg class="icon icon--lg" aria-hidden="true"><use href="#i-terminal"/></svg>Linux</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ (ISR + island) ================= -->
+  <section class="section" id="faq" aria-labelledby="faq-title">
+    <div class="container container--narrow">
+      <header class="section__header section__header--center">
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-title">Pertanyaan yang sering diajukan</h2>
+      </header>
+
+      <div class="field faq__search" data-faq-search>
+        <label class="field__label" for="faq-q">Cari pertanyaan</label>
+        <div class="field__control-wrap">
+          <input class="input" type="search" id="faq-q" name="q" inputmode="search" autocomplete="off" enterkeyhint="search" aria-describedby="faq-q-hint" aria-controls="faq-list">
+        </div>
+        <p class="field__hint" id="faq-q-hint">Contoh: keamanan, premium, offline</p>
+      </div>
+
+      <div class="accordion" id="faq-list" data-island="faq" data-hydrate="visible" data-version="{{faqVersion}}">
+        {{{faqItems}}}
+      </div>
+
+      <div class="state" data-faq-empty hidden>
+        <svg class="icon icon--xl state__icon" aria-hidden="true"><use href="#i-search"/></svg>
+        <p class="state__title">Tidak ada pertanyaan yang cocok</p>
+        <p>Coba kata kunci lain, atau hubungi kami di <a href="mailto:{{site.email}}">{{site.email}}</a>.</p>
+        <button class="btn btn--secondary btn--sm" type="button" data-faq-clear>Hapus pencarian</button>
+      </div>
+
+      <p class="faq__meta">Terakhir diperbarui <time datetime="{{faqVersion}}" data-faq-updated>{{faqUpdatedLabel}}</time>.</p>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <section class="section" aria-labelledby="cta-title">
+    <div class="container stack u-gap-3">
+      <div class="cta-panel">
+        <h2 id="cta-title">Mulai dengan langkah yang terukur</h2>
+        <p class="u-text-lg">Buat akun gratis dalam satu menit. Tanpa kartu kredit, tanpa akses ke rekening efek Anda.</p>
+        <div class="cluster u-justify-center">
+          <a class="btn btn--secondary btn--lg" href="/daftar/" data-haptic>Daftar gratis</a>
+        </div>
+      </div>
+      <p class="disclaimer-note u-mx-auto u-text-center">Seluruh grafik, angka, dan kode saham pada halaman ini adalah contoh ilustrasi dan bukan rekomendasi membeli atau menjual efek. Kinerja masa lalu tidak menjamin hasil di masa depan.</p>
+    </div>
+  </section>
+</main>
+
+<div class="mobile-cta glass" data-mobile-cta inert>
+  <a class="btn btn--secondary" href="/masuk/">Masuk</a>
+  <a class="btn btn--primary" href="/daftar/" data-haptic>Daftar gratis</a>
+</div>
+
+{{> footer}}

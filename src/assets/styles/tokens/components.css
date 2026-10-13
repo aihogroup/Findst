@@ -1,0 +1,64 @@
+/* ==========================================================================
+   LAYER 3 — COMPONENT TOKENS
+   Hanya merujuk token semantik. Komponen membaca variabel dari sini sehingga
+   variasi (variant) cukup mengganti token lokal, bukan menulis ulang aturan.
+   ========================================================================== */
+:root {
+  /* Target sentuh minimum (WCAG 2.5.5 / pedoman platform) */
+  --size-target: 2.75rem; /* 44px */
+  --size-target-lg: 3.5rem;
+
+  /* Ikon */
+  --icon-sm: 1rem;
+  --icon-md: 1.25rem;
+  --icon-lg: 1.5rem;
+  --icon-xl: 2rem;
+
+  /* Fokus */
+  --focus-ring-width: 3px;
+  --focus-ring-offset: 2px;
+  --focus-ring-color: var(--color-focus);
+
+  /* Tombol */
+  --btn-height: var(--size-target);
+  --btn-height-sm: 2.25rem;
+  --btn-height-lg: var(--size-target-lg);
+  --btn-padding-x: var(--space-3);
+  --btn-radius: var(--radius-pill);
+  --btn-font-size: var(--fs-base);
+  --btn-font-weight: var(--weight-semibold);
+  --btn-gap: var(--space-1);
+
+  /* Input */
+  --input-height: var(--size-target);
+  --input-padding-x: var(--space-2);
+  --input-radius: var(--radius-sm);
+  --input-bg: var(--color-surface);
+  --input-border: var(--color-border-strong);
+  --input-border-width: var(--border-1);
+
+  /* Kartu */
+  --card-radius: var(--radius-lg);
+  --card-padding: clamp(1.25rem, 1rem + 1vw, 2rem);
+  --card-bg: var(--color-surface);
+  --card-border: var(--color-border);
+  --card-shadow: var(--elevation-1);
+
+  /* Navigasi */
+  --nav-height: 4rem;
+  --nav-bg: var(--glass-bg);
+
+  /* Dialog */
+  --dialog-radius: var(--radius-xl);
+  --dialog-max-width: 32rem;
+
+  /* Toast */
+  --toast-radius: var(--radius-md);
+
+  /* Bento */
+  --bento-gap: clamp(0.75rem, 0.5rem + 1vw, 1.5rem);
+
+  /* Kontainer */
+  --container-max: 76rem;    /* ±1216px: panjang baris tetap nyaman */
+  --container-narrow: 46rem;
+}

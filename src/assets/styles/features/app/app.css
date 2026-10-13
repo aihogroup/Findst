@@ -1,0 +1,147 @@
+/* ==========================================================================
+   FEATURE: APP SHELL (area setelah login — client-side rendering)
+   Ponsel: navigasi bawah menempel (zona ibu jari). ≥64em: sidebar.
+   ========================================================================== */
+.app-shell {
+  display: grid;
+  min-height: calc(100dvh - var(--nav-height));
+}
+
+@media (min-width: 64em) {
+  .app-shell {
+    grid-template-columns: 15rem 1fr;
+  }
+}
+
+.app-nav {
+  position: fixed;
+  z-index: var(--z-sticky);
+  inset-inline: 0;
+  inset-block-end: 0;
+  padding-block-end: env(safe-area-inset-bottom);
+  border-block-start: var(--border-1) solid var(--color-border);
+}
+
+.app-nav__list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.app-nav__link {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  min-height: var(--size-target-lg);
+  padding-block: var(--space-0-5);
+  color: var(--color-text-muted);
+  font-size: var(--fs-xs);
+  font-weight: var(--weight-semibold);
+  text-decoration: none;
+}
+
+.app-nav__link[aria-current="page"] {
+  color: var(--color-primary-text);
+}
+
+.app-nav__link[aria-current="page"] .icon {
+  stroke-width: 2.5;
+}
+
+@media (min-width: 64em) {
+  .app-nav {
+    position: sticky;
+    inset-block: var(--nav-height) auto;
+    height: calc(100dvh - var(--nav-height));
+    padding: var(--space-3) var(--space-2);
+    border-block-start: 0;
+    border-inline-end: var(--border-1) solid var(--color-border);
+  }
+
+  .app-nav__list {
+    grid-template-columns: 1fr;
+    gap: var(--space-0-5);
+  }
+
+  .app-nav__link {
+    grid-auto-flow: column;
+    justify-content: start;
+    align-items: center;
+    gap: var(--space-1-5);
+    padding-inline: var(--space-2);
+    border-radius: var(--radius-md);
+    font-size: var(--fs-base);
+  }
+
+  .app-nav__link[aria-current="page"] {
+    background: var(--color-primary-subtle);
+  }
+}
+
+.app-main {
+  padding: var(--space-3) var(--space-gutter) calc(var(--space-12) + env(safe-area-inset-bottom));
+  min-width: 0;
+}
+
+@media (min-width: 64em) {
+  .app-main {
+    padding-block-end: var(--space-6);
+  }
+}
+
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-0-5);
+  padding: 0;
+  list-style: none;
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}
+
+.breadcrumb li:not(:last-child)::after {
+  content: "/";
+  margin-inline-start: var(--space-0-5);
+  color: var(--color-border-strong);
+}
+
+.app-grid {
+  display: grid;
+  gap: var(--bento-gap);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+}
+
+[data-skeleton-card] {
+  height: 9rem;
+  border-radius: var(--card-radius);
+}
+
+/* Nonaktifkan pull-to-refresh bawaan browser; diganti versi aplikasi */
+html:has(.app-shell) {
+  overscroll-behavior-y: contain;
+}
+
+.app-shell {
+  position: relative;
+}
+
+.ptr {
+  position: absolute;
+  z-index: var(--z-raised);
+  inset-block-start: calc(var(--space-2) * -3);
+  inset-inline-start: 50%;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-inline-start: -1.25rem;
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-primary-text);
+  box-shadow: var(--elevation-2);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ptr.is-refreshing .icon {
+  animation: spin 0.8s linear infinite;
+}

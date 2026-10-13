@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "findst-dev",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["scripts/serve.mjs", "--watch", "--port", "4173"],
+      "port": 4173
+    }
+  ]
+}

@@ -1,0 +1,171 @@
+/* ==========================================================================
+   ATOM — BUTTON
+   API:   .btn + varian (.btn--primary | --secondary | --ghost | --glass | --icon)
+          + ukuran (.btn--sm | --lg) + .btn--block
+   State: :hover (hanya pointer halus) · :focus-visible · :active (tekan)
+          [aria-busy="true"] (memuat) · :disabled / [aria-disabled="true"]
+          [aria-pressed="true"] (toggle) — ditandai juga oleh ikon, bukan warna saja
+   Slot:  .btn__icon (awal/akhir) · .btn__label · .btn__spinner (diisi JS)
+   ========================================================================== */
+.btn {
+  --_bg: transparent;
+  --_bg-hover: var(--color-primary-subtle);
+  --_fg: var(--color-text);
+  --_border: transparent;
+  --_shadow: none;
+
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap);
+  min-height: var(--btn-height);
+  min-width: var(--size-target);
+  padding-inline: var(--btn-padding-x);
+  border: var(--border-1) solid var(--_border);
+  border-radius: var(--btn-radius);
+  background-color: var(--_bg);
+  color: var(--_fg);
+  box-shadow: var(--_shadow);
+  font-family: var(--font-body);
+  font-size: var(--btn-font-size);
+  font-weight: var(--btn-font-weight);
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--dur-fast) var(--ease-standard),
+    box-shadow var(--dur-fast) var(--ease-standard),
+    transform var(--dur-instant) var(--ease-standard),
+    opacity var(--dur-fast) var(--ease-standard);
+}
+
+/* ---- Varian ---- */
+.btn--primary {
+  --_bg: var(--color-primary);
+  --_bg-hover: var(--color-primary-hover);
+  --_fg: var(--color-on-primary);
+  --_shadow: var(--bevel-highlight), var(--elevation-1);
+  /* Kilau lembut (skeuomorphism modern) */
+  background-image: linear-gradient(180deg, rgb(255 255 255 / 0.14), rgb(255 255 255 / 0) 60%);
+}
+
+.btn--secondary {
+  --_bg: var(--color-surface);
+  --_bg-hover: var(--color-surface-2);
+  --_fg: var(--color-primary-text);
+  --_border: var(--color-border-strong);
+  --_shadow: var(--bevel-highlight), var(--elevation-1);
+}
+
+.btn--ghost {
+  --_bg: transparent;
+  --_bg-hover: var(--color-primary-subtle);
+  --_fg: var(--color-text);
+}
+
+.btn--glass {
+  --_bg: var(--glass-bg-solid);
+  --_bg-hover: var(--color-surface);
+  --_fg: var(--color-text);
+  --_border: var(--glass-border);
+  --_shadow: var(--bevel-highlight), var(--elevation-1);
+}
+
+.btn--icon {
+  padding-inline: 0;
+  width: var(--btn-height);
+  flex: none;
+}
+
+/* ---- Ukuran ---- */
+.btn--sm {
+  --btn-height: var(--btn-height-sm);
+  --btn-padding-x: var(--space-2);
+  --btn-font-size: var(--fs-sm);
+}
+
+.btn--lg {
+  --btn-height: var(--btn-height-lg);
+  --btn-padding-x: var(--space-4);
+  --btn-font-size: var(--fs-md);
+}
+
+.btn--block {
+  display: flex;
+  width: 100%;
+}
+
+/* Perangkat sentuh: area tekan selalu ≥ 44px */
+@media (pointer: coarse) {
+  .btn--sm {
+    --btn-height: var(--size-target);
+  }
+}
+
+/* ---- Slot ---- */
+.btn__icon {
+  width: var(--icon-md);
+  height: var(--icon-md);
+  flex: none;
+}
+
+/* ---- State ---- */
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover:not(:disabled, [aria-disabled="true"], [aria-busy="true"]) {
+    background-color: var(--_bg-hover);
+    color: var(--_fg);
+  }
+}
+
+.btn:active:not(:disabled, [aria-disabled="true"], [aria-busy="true"]) {
+  transform: scale(0.97);
+  box-shadow: var(--bevel-pressed);
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.48;
+  box-shadow: none;
+}
+
+.btn[aria-busy="true"] {
+  cursor: progress;
+  pointer-events: none;
+}
+
+.btn__spinner {
+  display: none;
+}
+
+.btn[aria-busy="true"] .btn__spinner {
+  display: inline-block;
+}
+
+.btn[aria-busy="true"] .btn__icon {
+  display: none;
+}
+
+/* Toggle tertekan: latar + ikon berubah (tidak bergantung warna saja) */
+.btn[aria-pressed="true"] {
+  --_bg: var(--color-primary-subtle);
+  --_border: var(--color-primary);
+}
+
+/* ---- Ripple (elemen dibuat oleh components/atoms/ripple.js) ---- */
+.ripple {
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.2;
+  pointer-events: none;
+  transform: scale(0);
+}

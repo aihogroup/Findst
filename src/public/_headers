@@ -1,0 +1,41 @@
+# Header HTTP untuk CDN (format Cloudflare Pages / Netlify).
+# CSP per halaman disisipkan sebagai <meta> oleh build (berisi hash skrip sebaris);
+# header di sini melengkapi hal yang tidak bisa diatur lewat <meta>.
+
+/*
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
+  Cross-Origin-Opener-Policy: same-origin
+  Content-Security-Policy: frame-ancestors 'none'; upgrade-insecure-requests
+
+# HTML: selalu revalidasi agar pembaruan cepat sampai
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Aset berhash: cache jangka panjang di CDN edge & browser
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+/icons/*
+  Cache-Control: public, max-age=604800
+
+# Konten ISR: cache singkat + revalidasi di latar belakang
+/content/*
+  Cache-Control: public, max-age=60, stale-while-revalidate=86400
+
+# Service worker & manifest tidak boleh di-cache lama
+/sw.js
+  Cache-Control: no-cache
+/manifest.webmanifest
+  Cache-Control: public, max-age=3600
+
+# Area setelah login: tidak diindeks & tidak disimpan cache bersama
+/app/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: private, no-store

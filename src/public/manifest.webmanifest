@@ -1,0 +1,28 @@
+{
+  "id": "/",
+  "name": "Findst — Manajemen Investasi Saham",
+  "short_name": "Findst",
+  "description": "Manajemen investasi saham Indonesia dengan machine learning dan dynamic threshold.",
+  "lang": "id",
+  "dir": "ltr",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "orientation": "any",
+  "theme_color": "#7f1f31",
+  "background_color": "#f5eddc",
+  "categories": ["finance", "education", "productivity"],
+  "prefer_related_applications": false,
+  "icons": [
+    { "src": "/icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icons/icon-maskable.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Dasbor", "short_name": "Dasbor", "url": "/app/", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Masuk", "short_name": "Masuk", "url": "/masuk/", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

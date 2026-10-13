@@ -1,0 +1,126 @@
+/* ==========================================================================
+   FEATURE: AUTH — masuk, daftar (+OTP), lupa kata sandi
+   ========================================================================== */
+.auth {
+  display: grid;
+  min-height: calc(100dvh - var(--nav-height));
+  padding-block: var(--space-4) var(--space-8);
+}
+
+.auth__layout {
+  display: grid;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+@media (min-width: 64em) {
+  .auth__layout {
+    grid-template-columns: 1fr minmax(0, 30rem);
+    align-items: center;
+  }
+}
+
+.auth__aside {
+  display: none;
+}
+
+@media (min-width: 64em) {
+  .auth__aside {
+    display: grid;
+    gap: var(--space-3);
+    padding: var(--space-6);
+    border-radius: var(--radius-xl);
+  }
+}
+
+.auth__card {
+  width: 100%;
+  max-width: 30rem;
+  margin-inline: auto;
+  gap: var(--space-3);
+}
+
+.auth__title {
+  font-size: var(--fs-2xl);
+}
+
+.auth__form {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.auth__switch {
+  text-align: center;
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}
+
+.auth__switch a {
+  font-weight: var(--weight-semibold);
+}
+
+/* Galat tingkat form (ringkasan) */
+.form-alert {
+  display: flex;
+  gap: var(--space-1);
+  align-items: flex-start;
+  padding: var(--space-1-5) var(--space-2);
+  border-radius: var(--radius-sm);
+  background: var(--color-danger-subtle);
+  color: var(--color-danger);
+  font-size: var(--fs-sm);
+  font-weight: var(--weight-semibold);
+}
+
+.form-alert--info {
+  background: var(--color-info-subtle);
+  color: var(--color-info);
+}
+
+.form-alert--success {
+  background: var(--color-success-subtle);
+  color: var(--color-success);
+}
+
+/* Indikator langkah pendaftaran */
+.progress-steps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-1);
+  padding: 0;
+  list-style: none;
+  font-size: var(--fs-xs);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-muted);
+}
+
+.progress-steps li {
+  display: grid;
+  gap: var(--space-0-5);
+}
+
+.progress-steps li::before {
+  content: "";
+  height: 0.25rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-sunken);
+}
+
+.progress-steps li[aria-current="step"],
+.progress-steps li[data-done] {
+  color: var(--color-text);
+}
+
+.progress-steps li[aria-current="step"]::before,
+.progress-steps li[data-done]::before {
+  background: var(--color-primary);
+}
+
+.otp-resend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}

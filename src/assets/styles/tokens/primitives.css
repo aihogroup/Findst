@@ -1,0 +1,154 @@
+/* ==========================================================================
+   LAYER 1 — PRIMITIVE TOKENS
+   Nilai mentah. Komponen TIDAK BOLEH merujuk token di file ini secara langsung;
+   gunakan token semantik (semantic.css) atau token komponen (components.css).
+   ========================================================================== */
+:root {
+  /* ---- Maroon: mewah / kuat ---- */
+  --maroon-50: #fcf1f2;
+  --maroon-100: #f6dce0;
+  --maroon-200: #edb4bd;
+  --maroon-300: #e28a99;
+  --maroon-400: #cc5a6e;
+  --maroon-500: #a8364b;
+  --maroon-600: #7f1f31;
+  --maroon-700: #661828;
+  --maroon-800: #4c121e;
+  --maroon-900: #330c14;
+
+  /* ---- Cokelat: hangat / natural ---- */
+  --brown-50: #f8f1ea;
+  --brown-100: #eedfcd;
+  --brown-200: #dcc2a2;
+  --brown-300: #c6a177;
+  --brown-400: #ab8154;
+  --brown-500: #8c653d;
+  --brown-600: #70502f;
+  --brown-700: #573d24;
+  --brown-800: #3d2b19;
+  --brown-900: #261b10;
+
+  /* ---- Cream: nyaman / elegan ---- */
+  --cream-50: #fffdf8;
+  --cream-100: #fbf7ee;
+  --cream-200: #f5eddc;
+  --cream-300: #ede2ca;
+  --cream-400: #e1d2b2;
+  --cream-500: #cdbb95;
+
+  /* ---- Putih & Hitam ---- */
+  --white: #ffffff;
+  --black: #000000;
+
+  /* ---- Ink: hitam hangat untuk teks tema terang ---- */
+  --ink-900: #15110e;
+  --ink-800: #1e1915;
+  --ink-700: #2b241f;
+  --ink-600: #3d342d;
+  --ink-500: #5a4e45;
+  --ink-400: #7a6c61;
+
+  /* ---- OLED: permukaan gelap ---- */
+  --oled-0: #000000;
+  --oled-1: #0b0a09;
+  --oled-2: #131110;
+  --oled-3: #1b1817;
+  --oled-4: #252120;
+  --oled-5: #302b29;
+
+  /* ---- Status ---- */
+  --green-50: #e9f6ef;
+  --green-300: #6fd6a0;
+  --green-600: #1e7a4c;
+  --red-50: #fdecea;
+  --red-300: #ff8f86;
+  --red-600: #b3261e;
+  --amber-50: #fdf3e1;
+  --amber-300: #f6c15a;
+  --amber-700: #8a5300;
+  --blue-50: #e8f0fa;
+  --blue-300: #8ab8f0;
+  --blue-600: #1f5fa8;
+
+  /* ---- Spasi: grid 8 titik (space-N = N × 8px) ---- */
+  --space-0: 0;
+  --space-0-5: 0.25rem; /* 4px — setengah langkah, untuk detail optis */
+  --space-1: 0.5rem;    /* 8px */
+  --space-1-5: 0.75rem; /* 12px */
+  --space-2: 1rem;      /* 16px */
+  --space-3: 1.5rem;    /* 24px */
+  --space-4: 2rem;      /* 32px */
+  --space-5: 2.5rem;    /* 40px */
+  --space-6: 3rem;      /* 48px */
+  --space-8: 4rem;      /* 64px */
+  --space-10: 5rem;     /* 80px */
+  --space-12: 6rem;     /* 96px */
+  --space-16: 8rem;     /* 128px */
+
+  /* ---- Radius ---- */
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --radius-pill: 999px;
+
+  /* ---- Garis tepi ---- */
+  --border-1: 1px;
+  --border-2: 2px;
+
+  /* ---- Gerak ---- */
+  --dur-instant: 80ms;
+  --dur-fast: 150ms;
+  --dur-base: 240ms;
+  --dur-slow: 400ms;
+  --dur-slower: 640ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasized: cubic-bezier(0.3, 0, 0, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ---- Urutan tumpukan ---- */
+  --z-base: 0;
+  --z-raised: 10;
+  --z-sticky: 100;
+  --z-header: 200;
+  --z-overlay: 300;
+  --z-dialog: 400;
+  --z-toast: 500;
+  --z-skip: 600;
+
+  /* ---- Keluarga huruf ---- */
+  --family-serif: "Source Serif 4", "Source Serif Fallback", Georgia, "Times New Roman", serif;
+  --family-poppins: "Poppins", "Poppins Fallback", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --family-arial: Arial, "Helvetica Neue", Helvetica, "Liberation Sans", sans-serif;
+  --family-mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+
+  /* ---- Bobot ---- */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* ---- Skala ukuran huruf (relatif; ikut --font-scale lewat rem) ---- */
+  --size-12: 0.75rem;
+  --size-14: 0.875rem;
+  --size-16: 1rem;
+  --size-18: 1.125rem;
+  --size-20: 1.25rem;
+  --size-24: 1.5rem;
+
+  /* ---- Tinggi baris (kelipatan setengah grid saat dikali ukuran dasar) ---- */
+  --leading-tight: 1.1;
+  --leading-snug: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.65;
+
+  /* ---- Bayangan bernuansa cokelat (hangat, bukan abu) ---- */
+  --shadow-color: 30deg 35% 15%;
+  --shadow-1: 0 1px 2px hsl(var(--shadow-color) / 0.08), 0 1px 1px hsl(var(--shadow-color) / 0.04);
+  --shadow-2: 0 2px 4px hsl(var(--shadow-color) / 0.06), 0 8px 16px hsl(var(--shadow-color) / 0.08);
+  --shadow-3: 0 4px 8px hsl(var(--shadow-color) / 0.06), 0 16px 32px hsl(var(--shadow-color) / 0.1);
+  --shadow-4: 0 8px 16px hsl(var(--shadow-color) / 0.08), 0 32px 64px hsl(var(--shadow-color) / 0.14);
+}

@@ -1,0 +1,13 @@
+{
+  "version": "2026-10-07T00:00:00.000Z",
+  "items": [
+    {
+      "id": "beta-terbuka-2026",
+      "tone": "info",
+      "text": "Findst sedang dalam tahap beta terbuka. Daftar untuk mencoba fitur dasar secara gratis.",
+      "href": "/daftar/",
+      "linkLabel": "Ikut beta",
+      "expiresAt": null
+    }
+  ]
+}

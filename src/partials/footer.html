@@ -1,0 +1,197 @@
+<footer class="site-footer" aria-labelledby="footer-title">
+  <div class="container">
+    <h2 class="sr-only" id="footer-title">Informasi situs</h2>
+    <div class="site-footer__grid">
+      <div class="stack">
+        <a class="brand" href="/" aria-label="Findst, ke beranda">{{> logo}}<span aria-hidden="true">Findst<span class="brand__tld">.id</span></span></a>
+        <p class="u-text-muted">Manajemen investasi saham Indonesia dengan machine learning dan ambang keputusan yang menyesuaikan kondisi bursa.</p>
+      </div>
+      <nav aria-labelledby="footer-product">
+        <h3 class="site-footer__title" id="footer-product">Produk</h3>
+        <ul class="site-footer__links" role="list">
+          <li><a href="/#fitur">Fitur</a></li>
+          <li><a href="/#cara-kerja">Cara kerja</a></li>
+          <li><a href="/#premium">Premium</a></li>
+          <li><a href="/#pasang">Pasang aplikasi</a></li>
+        </ul>
+      </nav>
+      <nav aria-labelledby="footer-account">
+        <h3 class="site-footer__title" id="footer-account">Akun</h3>
+        <ul class="site-footer__links" role="list">
+          <li><a href="/masuk/">Masuk</a></li>
+          <li><a href="/daftar/">Daftar</a></li>
+          <li><a href="/lupa-sandi/">Lupa kata sandi</a></li>
+        </ul>
+      </nav>
+      <nav aria-labelledby="footer-legal">
+        <h3 class="site-footer__title" id="footer-legal">Legal</h3>
+        <ul class="site-footer__links" role="list">
+          <li><a href="/kebijakan-privasi/">Kebijakan privasi</a></li>
+          <li><a href="/syarat-ketentuan/">Syarat &amp; ketentuan</a></li>
+          <li><a href="/disclaimer/">Pernyataan risiko</a></li>
+          <li><button class="btn btn--ghost btn--sm u-text-sm" type="button" data-action="open-consent">Preferensi cookie</button></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="site-footer__legal">
+      <p>Findst adalah alat bantu analisis dan bukan penasihat investasi maupun perantara pedagang efek. Seluruh grafik dan angka di halaman publik adalah contoh ilustrasi, bukan rekomendasi. Investasi saham mengandung risiko, termasuk kehilangan modal.</p>
+      <p>&copy; {{year}} {{site.legalName}}. Hak cipta dilindungi.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== Drawer menu (mobile) ===== -->
+<dialog class="dialog dialog--drawer" id="nav-drawer" aria-labelledby="nav-drawer-title" data-lock-scroll>
+  <div class="dialog__header">
+    <h2 class="dialog__title" id="nav-drawer-title">Menu</h2>
+    <button class="btn btn--ghost btn--icon" type="button" data-dialog-close>
+      <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+      <span class="sr-only">Tutup menu</span>
+    </button>
+  </div>
+  <div class="dialog__body">
+    <nav aria-label="Navigasi utama (menu)">
+      <ul class="drawer-nav__list" role="list">
+        {{#if page.isApp}}
+        <li><a class="drawer-nav__link" href="/">Beranda publik</a></li>
+        {{/if}}
+        {{#unless page.isApp}}
+        <li><a class="drawer-nav__link" href="/#fitur" data-section-link="fitur">Fitur <svg class="icon icon--directional" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></li>
+        <li><a class="drawer-nav__link" href="/#cara-kerja" data-section-link="cara-kerja">Cara kerja <svg class="icon icon--directional" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></li>
+        <li><a class="drawer-nav__link" href="/#premium" data-section-link="premium">Premium <svg class="icon icon--directional" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></li>
+        <li><a class="drawer-nav__link" href="/#faq" data-section-link="faq">FAQ <svg class="icon icon--directional" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></li>
+        {{/unless}}
+      </ul>
+    </nav>
+    <hr class="divider">
+    <div class="stack u-gap-1">
+      <button class="btn btn--secondary btn--block theme-toggle" type="button" data-action="toggle-theme" aria-pressed="false">
+        <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+        <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+        Mode gelap
+      </button>
+      <button class="btn btn--secondary btn--block" type="button" data-action="open-settings" aria-haspopup="dialog" aria-controls="settings-dialog">
+        <svg class="icon" aria-hidden="true"><use href="#i-sliders"/></svg>
+        Pengaturan tampilan
+      </button>
+    </div>
+  </div>
+  <div class="dialog__footer">
+    <a class="btn btn--ghost btn--block" href="/masuk/" data-profile-link>
+      <svg class="icon" aria-hidden="true"><use href="#i-user"/></svg>
+      <span data-profile-label>Masuk</span>
+    </a>
+    <a class="btn btn--primary btn--block btn--lg" href="/daftar/" data-auth="guest">Daftar gratis</a>
+  </div>
+</dialog>
+
+<!-- ===== Pengaturan tampilan (bottom sheet di ponsel) ===== -->
+<dialog class="dialog dialog--sheet" id="settings-dialog" aria-labelledby="settings-title" aria-describedby="settings-desc" data-lock-scroll>
+  <div class="dialog__grabber" data-sheet-grabber aria-hidden="true"></div>
+  <div class="dialog__header">
+    <h2 class="dialog__title" id="settings-title">Tampilan</h2>
+    <button class="btn btn--ghost btn--icon" type="button" data-dialog-close>
+      <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+      <span class="sr-only">Tutup pengaturan</span>
+    </button>
+  </div>
+  <form class="dialog__body" data-prefs-form novalidate>
+    <p class="u-text-sm u-text-muted" id="settings-desc">Perubahan langsung diterapkan dan tersimpan otomatis di perangkat ini.</p>
+
+    <fieldset class="segmented">
+      <legend class="segmented__legend">Tema</legend>
+      <div class="segmented__options">
+        <label class="segmented__option"><input class="visually-hidden-input" type="radio" name="theme" value="light"><span class="segmented__face"><svg class="icon icon--sm segmented__check" aria-hidden="true"><use href="#i-check"/></svg><svg class="icon icon--sm" aria-hidden="true"><use href="#i-sun"/></svg>Terang</span></label>
+        <label class="segmented__option"><input class="visually-hidden-input" type="radio" name="theme" value="dark"><span class="segmented__face"><svg class="icon icon--sm segmented__check" aria-hidden="true"><use href="#i-check"/></svg><svg class="icon icon--sm" aria-hidden="true"><use href="#i-moon"/></svg>Gelap</span></label>
+        <label class="segmented__option"><input class="visually-hidden-input" type="radio" name="theme" value="system"><span class="segmented__face"><svg class="icon icon--sm segmented__check" aria-hidden="true"><use href="#i-check"/></svg><svg class="icon icon--sm" aria-hidden="true"><use href="#i-monitor"/></svg>Sistem</span></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="segmented">
+      <legend class="segmented__legend">Jenis huruf</legend>
+      <div class="segmented__options">
+        <label class="segmented__option"><input class="visually-hidden-input" type="radio" name="font" value="serif"><span class="segmented__face"><svg class="icon icon--sm segmented__check" aria-hidden="true"><use href="#i-check"/></svg>Serif · Luxury</span></label>
+        <label class="segmented__option"><input class="visually-hidden-input" type="radio" name="font" value="poppins"><span class="segmented__face"><svg class="icon icon--sm segmented__check" aria-hidden="true"><use href="#i-check"/></svg>Poppins · Santai</span></label>
+        <label class="segmented__option"><input class="visually-hidden-input" type="radio" name="font" value="arial"><span class="segmented__face"><svg class="icon icon--sm segmented__check" aria-hidden="true"><use href="#i-check"/></svg>Arial · Corporate</span></label>
+      </div>
+    </fieldset>
+
+    <div class="field">
+      <div class="field__label-row">
+        <label class="field__label" for="pref-scale">Ukuran huruf</label>
+        <output class="u-font-semibold" for="pref-scale" data-scale-output>100%</output>
+      </div>
+      <input class="range" type="range" id="pref-scale" name="fontScale" min="0.875" max="1.5" step="0.125" value="1" aria-describedby="pref-scale-hint">
+      <p class="field__hint" id="pref-scale-hint">87,5% hingga 150%. Tata letak tetap utuh hingga pembesaran 200%.</p>
+    </div>
+
+    <div class="card" aria-label="Pratinjau tampilan" role="group">
+      <span class="chip chip--example">Pratinjau</span>
+      <p class="card__title">Ambang yang terus belajar</p>
+      <p class="card__body">Parameter keputusan menyesuaikan volatilitas pasar setiap hari bursa.</p>
+    </div>
+  </form>
+  <div class="dialog__footer">
+    <button class="btn btn--ghost" type="button" data-action="reset-prefs">
+      <svg class="icon" aria-hidden="true"><use href="#i-refresh"/></svg>Atur ulang
+    </button>
+    <button class="btn btn--primary" type="button" data-dialog-close>Selesai</button>
+  </div>
+</dialog>
+
+<!-- ===== Petunjuk pemasangan (iOS / browser tanpa prompt) ===== -->
+<dialog class="dialog dialog--sheet" id="install-dialog" aria-labelledby="install-title" data-lock-scroll>
+  <div class="dialog__grabber" data-sheet-grabber aria-hidden="true"></div>
+  <div class="dialog__header">
+    <h2 class="dialog__title" id="install-title">Pasang Findst</h2>
+    <button class="btn btn--ghost btn--icon" type="button" data-dialog-close>
+      <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+      <span class="sr-only">Tutup petunjuk</span>
+    </button>
+  </div>
+  <div class="dialog__body">
+    <div data-install-guide="ios" hidden>
+      <p class="u-text-muted u-mb-2">Di iPhone atau iPad, buka situs ini dengan Safari, lalu:</p>
+      <ol class="ios-steps">
+        <li>
+          <svg class="ios-steps__art" viewBox="0 0 72 72" aria-hidden="true"><rect x="10" y="44" width="52" height="16" rx="4" fill="none" stroke="currentColor" stroke-opacity=".35" stroke-width="2"/><g class="icon" transform="translate(24 20)"><use href="#i-share" width="24" height="24"/></g><path d="M36 46v-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span>Ketuk tombol <strong>Bagikan</strong> di bilah bawah Safari.</span>
+        </li>
+        <li>
+          <svg class="ios-steps__art" viewBox="0 0 72 72" aria-hidden="true"><rect x="10" y="14" width="52" height="44" rx="6" fill="none" stroke="currentColor" stroke-opacity=".35" stroke-width="2"/><path d="M18 28h22M18 44h22" stroke="currentColor" stroke-opacity=".35" stroke-width="2" stroke-linecap="round"/><g class="icon" transform="translate(42 24)"><use href="#i-plus-square" width="24" height="24"/></g></svg>
+          <span>Gulir dan pilih <strong>Tambah ke Layar Utama</strong>.</span>
+        </li>
+        <li>
+          <svg class="ios-steps__art" viewBox="0 0 72 72" aria-hidden="true"><rect x="14" y="26" width="44" height="20" rx="10" fill="currentColor" fill-opacity=".14"/><path d="M28 36l5 5 11-11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Ketuk <strong>Tambah</strong>. Findst akan muncul sebagai aplikasi di layar utama.</span>
+        </li>
+      </ol>
+    </div>
+    <div data-install-guide="generic" hidden>
+      <p class="u-text-muted">Browser ini belum menampilkan dialog pemasangan otomatis. Buka menu browser lalu pilih <strong>Pasang aplikasi</strong> atau <strong>Tambahkan ke layar utama</strong>. Di desktop, gunakan Chrome atau Edge untuk pengalaman terbaik.</p>
+    </div>
+  </div>
+  <div class="dialog__footer">
+    <button class="btn btn--primary" type="button" data-dialog-close>Mengerti</button>
+  </div>
+</dialog>
+
+<!-- ===== Persetujuan cookie (non-modal) ===== -->
+<section class="consent glass" data-consent aria-labelledby="consent-title" hidden>
+  <div class="u-flex u-items-center u-gap-1">
+    <svg class="icon icon--lg u-text-accent" aria-hidden="true"><use href="#i-cookie"/></svg>
+    <h2 class="consent__title" id="consent-title">Privasi Anda</h2>
+  </div>
+  <p class="consent__text">Kami memakai penyimpanan lokal yang diperlukan agar situs berfungsi, misalnya untuk menyimpan preferensi tampilan. Dengan izin Anda, kami juga ingin memakai analitik anonim untuk memperbaiki layanan. <a href="/kebijakan-privasi/">Baca kebijakan privasi</a>.</p>
+  <div class="consent__actions">
+    <button class="btn btn--secondary" type="button" data-consent-choice="rejected">Tolak opsional</button>
+    <button class="btn btn--secondary" type="button" data-consent-choice="accepted">Terima semua</button>
+  </div>
+</section>
+
+<!-- ===== Live region: toast/snackbar & pengumuman pembaca layar ===== -->
+<div class="toast-region" data-toast-region aria-live="polite" aria-relevant="additions"></div>
+<div class="sr-only" data-sr-announcer aria-live="polite" aria-atomic="true"></div>
+<div class="sr-only" data-sr-announcer-assertive aria-live="assertive" aria-atomic="true"></div>
+</body>
+</html>

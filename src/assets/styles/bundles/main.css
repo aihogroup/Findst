@@ -1,0 +1,9 @@
+/* ==========================================================================
+   BUNDLE: MAIN — dimuat tanpa memblokir render (disisipkan oleh boot script).
+   ========================================================================== */
+@import "../components/atoms/controls.css";
+@import "../components/molecules/form.css";
+@import "../components/organisms/dialog.css";
+@import "../components/organisms/organisms.css";
+@import "../features/landing/sections.css";
+@import "../features/legal/prose.css";

@@ -1,0 +1,20 @@
+/* ==========================================================================
+   BUNDLE: CRITICAL — disisipkan sebaris (<style>) di <head> setiap halaman.
+   Hanya gaya yang dibutuhkan untuk render pertama di atas lipatan.
+   Build menggabungkan @import menjadi satu blok & meminifikasi.
+   ========================================================================== */
+@import "../tokens/primitives.css";
+@import "../tokens/semantic.css";
+@import "../tokens/components.css";
+@import "../base/fonts.css";
+@import "../base/reset.css";
+@import "../base/global.css";
+@import "../base/a11y.css";
+@import "../layout/layout.css";
+@import "../utilities/utilities.css";
+@import "../components/atoms/atoms.css";
+@import "../components/atoms/button.css";
+@import "../components/molecules/card.css";
+@import "../components/molecules/feedback.css";
+@import "../components/organisms/header.css";
+@import "../features/landing/hero.css";
