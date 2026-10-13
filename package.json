@@ -10,9 +10,15 @@
   "scripts": {
     "dev": "node scripts/serve.mjs --watch",
     "build": "node scripts/build.mjs",
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "serve": "node scripts/serve.mjs",
     "test": "node --test \"tests/*.test.mjs\"",
     "fonts": "node scripts/fetch-fonts.mjs",
     "icons": "powershell -ExecutionPolicy Bypass -File scripts/generate-icons.ps1"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }
